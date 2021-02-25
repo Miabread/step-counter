@@ -32,7 +32,7 @@ export default async (req: NowRequest, res: NowResponse) => {
         name: email?.groups?.name ?? 'error',
         year: parseInt(email?.groups?.year ?? '-1'),
         shop: getShop(body.shop),
-        steps: parseInt(email?.groups?.year ?? '0'),
+        steps: parseInt(body.steps ?? '0'),
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
     };
@@ -40,5 +40,5 @@ export default async (req: NowRequest, res: NowResponse) => {
 
     await prisma.entry.create({ data });
 
-    res.status(200);
+    res.status(200).send('Created');
 };
