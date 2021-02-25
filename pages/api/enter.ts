@@ -39,4 +39,6 @@ export default async (req: NowRequest, res: NowResponse) => {
     console.log(data);
 
     await prisma.entry.create({ data });
+
+    res.status(200);
 };
