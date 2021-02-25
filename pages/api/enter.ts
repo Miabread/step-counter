@@ -28,15 +28,17 @@ export default async (req: NowRequest, res: NowResponse) => {
     const body = req.body as Input;
     const email = emailRegex.exec(body.email);
 
+    let steps = parseInt(body.steps ?? '0');
+    if (!Number.isInteger(steps)) steps = 0;
+
     const data = {
         name: email?.groups?.name ?? 'error',
-        year: parseInt(email?.groups?.year ?? '-1'),
+        year: parseInt(email?.groups?.year ?? '0'),
         shop: getShop(body.shop),
         steps: parseInt(body.steps ?? '0'),
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
     };
-    console.log(data);
 
     await prisma.entry.create({ data });
 
