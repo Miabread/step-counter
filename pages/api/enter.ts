@@ -7,7 +7,7 @@ import { getShop } from "../../lib/shop";
 interface Input {
     email: string,
     shop: string,
-    steps: number,
+    steps: string,
     date: string,
     proofUrl: string,
 }
@@ -32,7 +32,7 @@ export default async (req: NowRequest, res: NowResponse) => {
         name: email?.groups?.name ?? 'error',
         year: parseInt(email?.groups?.year ?? '-1'),
         shop: getShop(body.shop),
-        steps: body.steps ?? 0,
+        steps: parseInt(email?.groups?.year ?? '0'),
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
     };
