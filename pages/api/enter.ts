@@ -14,7 +14,7 @@ interface Input {
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
 
-export default (req: NowRequest, res: NowResponse) => {
+export default async (req: NowRequest, res: NowResponse) => {
     if (typeof req.body !== 'object' || req.body == null) {
         res.status(400).send('Bad Request');
         return;
@@ -28,7 +28,7 @@ export default (req: NowRequest, res: NowResponse) => {
     const body = req.body as Input;
     const email = emailRegex.exec(body.email);
 
-    prisma.entry.create({
+    await prisma.entry.create({
         data: {
             name: email?.groups?.name ?? 'error',
             year: parseInt(email?.groups?.year ?? '-1'),
