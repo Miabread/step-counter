@@ -11,10 +11,11 @@ generator client {
 }
 
 model Entry {
-    id       String @id @default(cuid())
+    id       String   @id @default(cuid())
     name     String
     year     Int
     shop     Int
     steps    Int
+    date     DateTime
     proofUrl String
 }
