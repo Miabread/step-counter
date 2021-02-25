@@ -28,14 +28,15 @@ export default async (req: NowRequest, res: NowResponse) => {
     const body = req.body as Input;
     const email = emailRegex.exec(body.email);
 
-    await prisma.entry.create({
-        data: {
-            name: email?.groups?.name ?? 'error',
-            year: parseInt(email?.groups?.year ?? '-1'),
-            shop: getShop(body.shop),
-            steps: body.steps ?? 0,
-            date: new Date(body.date ?? 'error'),
-            proofUrl: body.proofUrl ?? 'error',
-        }
-    });
+    const data = {
+        name: email?.groups?.name ?? 'error',
+        year: parseInt(email?.groups?.year ?? '-1'),
+        shop: getShop(body.shop),
+        steps: body.steps ?? 0,
+        date: new Date(body.date ?? 'error'),
+        proofUrl: body.proofUrl ?? 'error',
+    };
+    console.log(data);
+
+    await prisma.entry.create({ data });
 };
