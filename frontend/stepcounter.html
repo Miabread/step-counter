@@ -19,13 +19,18 @@
         <hr>
     </section>
 
+    <!-- Every single tab ever made -->
     <div class="wholetab">
+        <!-- Tabs as a whole -->
         <div class="yeartabs">
-            <button class="tablinks" onclick="openShop(event, '2021')" id="defaultOpen">2021</button>
-            <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
-            <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
-            <button class="tablinks" onclick="openShop(event, '2024')">2024</button>
-            <button class="tablinks" onclick="openShop(event, 'Faculty')">Faculty</button>
+            <!-- This is the customization of the tabs themselves -->
+            <div class="yeartabdesign">
+                <button class="tablinks" onclick="openShop(event, '2021')">2021</button>
+                <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
+                <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
+                <button class="tablinks" onclick="openShop(event, '2024')">2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Faculty')">Faculty</button>
+            </div>
         </div>
         <div id="2021" class="tabcontent">
             <div class="tab">
@@ -69,8 +74,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting Faculty</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech Faculty</button>
@@ -92,8 +97,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2024</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2024</button>
@@ -115,8 +120,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2022</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2022</button>
@@ -138,8 +143,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2023</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2023</button>
@@ -284,10 +289,16 @@
 
         .yeartabs {
             overflow: hidden;
-            border: 0.3em solid navy;
+            border: 1px solid #ccc;
             background-color: #f1f1f1;
+        }
+
+        .yeartabdesign {
+            background-color: inherit;
             color: navy;
             text-align: center;
+            border: 0.3em solid navy;
+            outline: none;
             cursor: pointer;
             padding: 1em;
             transition: 0.3s;
