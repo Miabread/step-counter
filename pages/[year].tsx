@@ -15,19 +15,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const year = parseInt(context.params?.year as string, 10);
 
-    const queries = shops.map((_, shop) => prisma.entry.aggregate({
-        where: { shop, year },
-        sum: {
-            steps: true,
-        },
-    }));
+    const query = await prisma.entry.groupBy({
+        by: ['shop'],
+        where: { year },
+        sum: { steps: true },
+    });
 
-    const steps = await Promise.all(queries);
+    const shopSteps = Object.fromEntries(query.map(it => [it.shop, it.sum.steps]));
+    const steps = shops.map((_, it) => shopSteps[it] ?? 0);
 
     return {
-        props: {
-            steps: steps.map(step => step.sum.steps),
-        },
+        props: { steps },
         revalidate: 60,
     };
 };

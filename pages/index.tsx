@@ -5,19 +5,16 @@ import { prisma } from '../lib/prisma';
 import { shops, years } from '../lib/shop';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const queries = shops.map((_, shop) => prisma.entry.aggregate({
-        where: { shop },
-        sum: {
-            steps: true,
-        },
-    }));
+    const query = await prisma.entry.groupBy({
+        by: ['shop'],
+        sum: { steps: true },
+    });
 
-    const steps = await Promise.all(queries);
+    const shopSteps = Object.fromEntries(query.map(it => [it.shop, it.sum.steps]));
+    const steps = shops.map((_, it) => shopSteps[it] ?? 0);
 
     return {
-        props: {
-            steps: steps.map(step => step.sum.steps),
-        },
+        props: { steps },
         revalidate: 60 * 5,
     };
 };
@@ -46,8 +43,8 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
         <main>
             <dl>
                 {shops.map((shop, i) => (<>
-                    <dt key={i}>{shop}</dt>
-                    <dd key={i}>{steps[i]} Steps</dd>
+                    <dt>{shop}</dt>
+                    <dd>{steps[i]} Steps</dd>
                 </>))}
             </dl>
         </main>
