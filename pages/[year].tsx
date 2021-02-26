@@ -1,11 +1,11 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { prisma } from '../lib/prisma';
 import { shops, years } from '../lib/shop';
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: years.map(y => `/${y}`),
         fallback: false,
@@ -28,6 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             steps: steps.map(step => step.sum.steps),
         },
+        revalidate: 60,
     };
 };
 

@@ -18,6 +18,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             steps: steps.map(step => step.sum.steps),
         },
+        revalidate: 60 * 5,
     };
 };
 
