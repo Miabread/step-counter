@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--
+            Author: Wyatt Allaby
+            Date: 2-24-21
+         -->
+    <meta charset="utf-8" />
+    <title>Step Counter</title>
+</head>
+
+<body>
+    <header>
+        <h1>Step Competition</h1>
+    </header>
+    <section>
+        <h2>Shops Totals</h2>
+        <hr>
+    </section>
+
+    <div class="wholetab">
+        <div class="yeartabs">
+            <button class="tablinks" onclick="openShop(event, '2021')" id="defaultOpen">2021</button>
+            <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
+            <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
+            <button class="tablinks" onclick="openShop(event, '2024')">2024</button>
+            <button class="tablinks" onclick="openShop(event, 'Faculty')">Faculty</button>
+        </div>
+        <div id="2021" class="tabcontent">
+            <div class="tab">
+                <!-- This is the code for each tab for shops -->
+                <button class="tablinks" onclick="openShop(event, 'CPWD2021')" id="defaultOpen">CPWD 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Metal Fabrication')">Metal Fabrication 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Design and Visual')">Design and Visual 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'HVAC')">HVAC 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Electrical Wiring')">Electrical Wiring 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Health Tech')">Health Tech 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Business Tech')">Business Tech 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Cosmetology')">Cosmetology 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Culinary')">Culinary 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Carpentry')">Carpentry 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2021</button>
+                <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2021</button>
+            </div>
+        </div>
+        <div id="Faculty" class="tabcontent">
+            <div class="tab">
+                <!-- This is the code for each tab for shops -->
+                <button class="tablinks" onclick="openShop(event, 'CPWD')" id="defaultOpen">CPWD Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Metal Fabrication')">Metal Fabrication
+                    Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Design and Visual')">Design and Visual
+                    Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'HVAC')">HVAC Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Electrical Wiring')">Electrical Wiring
+                    Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Health Tech')">Health Tech Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Business Tech')">Business Tech Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Cosmetology')">Cosmetology Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Culinary')">Culinary Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Carpentry')">Carpentry Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
+                    Manufacturing Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech Faculty</button>
+            </div>
+        </div>
+        <div id="2024" class="tabcontent">
+            <div class="tab">
+                <!-- This is the code for each tab for shops -->
+                <button class="tablinks" onclick="openShop(event, 'CPWD')" id="defaultOpen">CPWD 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Metal Fabrication')">Metal Fabrication 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Design and Visual')">Design and Visual 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'HVAC')">HVAC 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Electrical Wiring')">Electrical Wiring 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Health Tech')">Health Tech 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Business Tech')">Business Tech 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Cosmetology')">Cosmetology 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Culinary')">Culinary 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Carpentry')">Carpentry 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
+                    Manufacturing 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2024</button>
+            </div>
+        </div>
+        <div id="2022" class="tabcontent">
+            <div class="tab">
+                <!-- This is the code for each tab for shops -->
+                <button class="tablinks" onclick="openShop(event, 'CPWD')" id="defaultOpen">CPWD 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Metal Fabrication')">Metal Fabrication 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Design and Visual')">Design and Visual 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'HVAC')">HVAC 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Electrical Wiring')">Electrical Wiring 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Health Tech')">Health Tech 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Business Tech')">Business Tech 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Cosmetology')">Cosmetology 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Culinary')">Culinary 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Carpentry')">Carpentry 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
+                    Manufacturing 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2022</button>
+            </div>
+        </div>
+        <div id="2023" class="tabcontent">
+            <div class="tab">
+                <!-- This is the code for each tab for shops -->
+                <button class="tablinks" onclick="openShop(event, 'CPWD')" id="defaultOpen">CPWD 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Metal Fabrication')">Metal Fabrication 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Design and Visual')">Design and Visual 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'HVAC')">HVAC 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Electrical Wiring')">Electrical Wiring 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Health Tech')">Health Tech 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Business Tech')">Business Tech 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Cosmetology')">Cosmetology 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Culinary')">Culinary 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Carpentry')">Carpentry 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
+                    Manufacturing 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2023</button>
+            </div>
+        </div>
+        <!-- this is where you can see the pop up for the steps -->
+        <div id="CPWD" class="tabcontent">
+            <p>100,000 Steps</p>
+        </div>
+        <div id="Metal Fabrication" class="tabcontent">
+            <p>20,000 Steps</p>
+        </div>
+        <div id="Design and Visual" class="tabcontent">
+            <p>10,503 Steps</p>
+        </div>
+        <div id="HVAC" class="tabcontent">
+            <p>3,000 Steps</p>
+        </div>
+        <div id="Electrical Wiring" class="tabcontent">
+            <p>10,437 Steps</p>
+        </div>
+        <div id="Health Tech" class="tabcontent">
+            <p>16,000 Steps</p>
+        </div>
+        <div id="Business Tech" class="tabcontent">
+            <p>9,000 Steps</p>
+        </div>
+        <div id="Cosmetology" class="tabcontent">
+            <p>10,320 Steps</p>
+        </div>
+        <div id="Culinary" class="tabcontent">
+            <p>11,900 Steps</p>
+        </div>
+        <div id="Carpentry" class="tabcontent">
+            <p>3,462 Steps</p>
+        </div>
+        <div id="Plumbing" class="tabcontent">
+            <p>5,000 Steps</p>
+        </div>
+        <div id="Paint And Design" class="tabcontent">
+            <p>23,000 Steps</p>
+        </div>
+        <div id="Drafting" class="tabcontent">
+            <p>492,910 Steps</p>
+        </div>
+        <div id="Advanced Manufacturing" class="tabcontent">
+            <p>10,321 Steps</p>
+        </div>
+        <div id="Auto Collision" class="tabcontent">
+            <p>7,740 Steps</p>
+        </div>
+        <div id="Auto Tech" class="tabcontent">
+            <p>14,000 Steps</p>
+        </div>
+        <div id="BioTech" class="tabcontent">
+            <p>10,975 Steps</p>
+        </div>
+        <div id="No Shop" class="tabcontent">
+            <p>10,000 Steps </p>
+        </div>
+    </div>
+
+    <script>
+        function openShop(evt, shopName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (const content of tabcontent) {
+                content.style.display = "none";
+            }
+            const tablinks = document.getElementsByClassName("tablinks");
+            for (const link of tablinks) {
+                link.className = link.className.replace(" active", "");
+            }
+            document.getElementById(shopName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="totalSteps">
+        <div class="total">
+            <p>100,000,000 Total Steps</p>
+        </div>
+    </div>
+
+    <style>
+        /* Imports fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+
+        body {
+            background-color: rgb(199, 199, 199);
+            /* background-color: gold; */
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        h2 {
+            text-align: center;
+            color: navy;
+        }
+
+        hr {
+            display: block;
+            text-align: center;
+            background-color: navy;
+            height: 1vh;
+            width: 25vw;
+        }
+
+        /* Centers whole box */
+        .totalSteps {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .total {
+            font-family: 'Anton', sans-serif;
+            border: 0.3em solid navy;
+            background-color: white;
+            width: 10vw;
+        }
+
+        .wholetab {
+            font-family: 'Anton', sans-serif;
+            /* display: flex; */
+            text-align: center;
+            /* justify-content: space-evenly; */
+        }
+
+        .yeartabs {
+            overflow: hidden;
+            border: 0.3em solid navy;
+            background-color: #f1f1f1;
+            color: navy;
+            text-align: center;
+            cursor: pointer;
+            padding: 1em;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            color: navy;
+            text-align: center;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 1em;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: gold;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: gold;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            background-color: white;
+            color: navy;
+            display: none;
+            padding: 1em;
+            border: 0.3em solid navy;
+            /* border-top: none; */
+        }
+    </style>
+</body>
+
+</html>

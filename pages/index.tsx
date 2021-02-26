@@ -1,65 +1,55 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { prisma } from '../lib/prisma';
+import { shops, years } from '../lib/shop';
 
-export default function Home() {
-    return (
-        <div className={styles.container}>
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+export const getStaticProps: GetStaticProps = async (context) => {
+    const queries = shops.map((_, shop) => prisma.entry.aggregate({
+        where: { shop },
+        sum: {
+            steps: true,
+        },
+    }));
 
-            <main className={styles.main}>
-                <h1 className={styles.title}>
-                    Welcome to <a href="https://nextjs.org">Next.js!</a>
-                </h1>
+    const steps = await Promise.all(queries);
 
-                <p className={styles.description}>
-                    Get started by editing{' '}
-                    <code className={styles.code}>pages/index.js</code>
-                </p>
+    return {
+        props: {
+            steps: steps.map(step => step.sum.steps),
+        },
+        revalidate: 60 * 5,
+    };
+};
 
-                <div className={styles.grid}>
-                    <a href="https://nextjs.org/docs" className={styles.card}>
-                        <h3>Documentation &rarr;</h3>
-                        <p>Find in-depth information about Next.js features and API.</p>
-                    </a>
+export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
+    return <>
+        <Head>
+            <title>Step Competition</title>
+        </Head>
 
-                    <a href="https://nextjs.org/learn" className={styles.card}>
-                        <h3>Learn &rarr;</h3>
-                        <p>Learn about Next.js in an interactive course with quizzes!</p>
-                    </a>
+        <header>
+            <Link href="/">
+                <h1>Step Competition</h1>
+            </Link>
+            <hr />
+            <nav>
+                {years.map(year => (
+                    <Link href={year} key={year}>
+                        {year === '0' ? 'Faculty' : year}
+                    </Link>
+                ))}
+            </nav>
+            <hr />
+        </header>
 
-                    <a
-                        href="https://github.com/vercel/next.js/tree/master/examples"
-                        className={styles.card}
-                    >
-                        <h3>Examples &rarr;</h3>
-                        <p>Discover and deploy boilerplate example Next.js projects.</p>
-                    </a>
-
-                    <a
-                        href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                        className={styles.card}
-                    >
-                        <h3>Deploy &rarr;</h3>
-                        <p>
-                            Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-                    </a>
-                </div>
-            </main>
-
-            <footer className={styles.footer}>
-                <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by{' '}
-                    <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-                </a>
-            </footer>
-        </div>
-    )
+        <main>
+            <dl>
+                {shops.map((shop, i) => (<>
+                    <dt key={i}>{shop}</dt>
+                    <dd key={i}>{steps[i]} Steps</dd>
+                </>))}
+            </dl>
+        </main>
+    </>;
 }
