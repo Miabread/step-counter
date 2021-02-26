@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(60, 60, 60);
+    margin:5%;
+}
+
+.image {
+    position: fixed;
+    right: 400px;
+    top: 150px;
+}
+
+.no {
+    position: fixed;
+    right: 865px;
+    top: 700px;
+    font-size: 20px;
+}
+
+.yes {
+    position: fixed;
+    right: 400px;
+    top: 700px;
+    font-size: 20px;
+}
+
+.h1 {
+    position: fixed;
+    right: 555px;
+    top: 75px;
+    color: whitesmoke;
+}
