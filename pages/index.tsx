@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         props: { steps },
-        revalidate: 60 * 5,
+        revalidate: 60,
     };
 };
 
