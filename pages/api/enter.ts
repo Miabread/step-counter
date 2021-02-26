@@ -33,8 +33,8 @@ export default async (req: NowRequest, res: NowResponse) => {
 
     const data = {
         name: email?.groups?.name ?? 'error',
-        year: parseInt(email?.groups?.year ?? '0'),
-        shop: shops[body.shop ?? ''] ?? -1,
+        year: parseInt(email?.groups?.year ?? '0', 10),
+        shop: shops.findIndex(shop => shop === body.shop),
         steps: parseInt(body.steps ?? '0'),
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
