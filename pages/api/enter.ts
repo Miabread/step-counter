@@ -2,7 +2,7 @@
 
 import { prisma } from "../../lib/prisma";
 import { NowRequest, NowResponse } from '@vercel/node';
-import { getShop } from "../../lib/shop";
+import { shops } from "../../lib/shop";
 
 interface Input {
     email: string,
@@ -34,7 +34,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const data = {
         name: email?.groups?.name ?? 'error',
         year: parseInt(email?.groups?.year ?? '0'),
-        shop: getShop(body.shop),
+        shop: shops[body.shop ?? ''] ?? -1,
         steps: parseInt(body.steps ?? '0'),
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
