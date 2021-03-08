@@ -14,17 +14,17 @@
     <header>
         <h1>Step Competition</h1>
     </header>
-    <section>
+    <article>
         <h2>Shops Totals</h2>
         <hr>
-    </section>
+    </article>
 
     <!-- Every single tab ever made -->
     <div class="wholetab">
         <!-- Tabs as a whole -->
-        <div class="yeartabs">
+        <div class="tab">
             <!-- This is the customization of the tabs themselves -->
-            <div class="yeartabdesign">
+            <div class="tab button">
                 <button class="tablinks" onclick="openShop(event, '2021')">2021</button>
                 <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
                 <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
@@ -239,14 +239,22 @@
         </div>
     </div>
 
+    <img src="steplogo.png" width="220vw" height="220vh" alt="" />
+    <br>
+    <br>
+
+    <footer>
+        <hr>
+        Coders: James Clark, Wyatt Allaby, Logo Designer: Mylena Bovo
+    </footer>
+
     <style>
         /* Imports fonts */
         @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 
         body {
-            background-color: rgb(199, 199, 199);
-            /* background-color: gold; */
+            background-color: rgb(216, 216, 216);
         }
 
         h1 {
@@ -264,6 +272,27 @@
             background-color: navy;
             height: 1vh;
             width: 25vw;
+        }
+
+        footer hr {
+            display: block;
+            text-align: center;
+            background-color: navy;
+            height: 0.2em;
+            width: 75vw
+        }
+
+        footer {
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* This is for logo */
+        img {
+            width: 50vw;
+            height: 50vh;
+            border-radius: 50%;
+            margin: 4% 2% 2% 25%;
         }
 
         /* Centers whole box */
@@ -287,29 +316,11 @@
             /* justify-content: space-evenly; */
         }
 
-        .yeartabs {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-
-        .yeartabdesign {
-            background-color: inherit;
-            color: navy;
-            text-align: center;
-            border: 0.3em solid navy;
-            outline: none;
-            cursor: pointer;
-            padding: 1em;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
         /* Style the tab */
         .tab {
             overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
+            border: 1px solid white;
+            background-color: white;
         }
 
         /* Style the buttons inside the tab */
