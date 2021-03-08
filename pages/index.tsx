@@ -1,10 +1,12 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
+import { InferGetStaticPropsType } from 'next';
+import React from 'react';
+import Entries from '../components/Entries';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { prisma } from '../lib/prisma';
-import { shops, years } from '../lib/shop';
+import { shops } from '../lib/shop';
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = async () => {
     const query = await prisma.entry.groupBy({
         by: ['shop'],
         sum: { steps: true },
@@ -20,33 +22,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <>
-        <Head>
-            <title>Step Competition</title>
-        </Head>
-
-        <header>
-            <Link href="/">
-                <h1>Step Competition</h1>
-            </Link>
-            <hr />
-            <nav>
-                {years.map(year => (
-                    <Link href={year} key={year}>
-                        {year === '0' ? 'Faculty' : year}
-                    </Link>
-                ))}
-            </nav>
-            <hr />
-        </header>
-
-        <main>
-            <dl>
-                {shops.map((shop, i) => (<>
-                    <dt>{shop}</dt>
-                    <dd>{steps[i]} Steps</dd>
-                </>))}
-            </dl>
-        </main>
-    </>;
+    return <div>
+        <Header />
+        <Entries steps={steps} />
+        <Footer />
+        <style jsx>{`
+            div {
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                min-height: 100vh;
+            }
+        `}</style>
+    </div>;
 }

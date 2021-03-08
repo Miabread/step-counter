@@ -2,8 +2,12 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import React from 'react';
+import Entries from '../components/Entries';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { prisma } from '../lib/prisma';
-import { shops, years } from '../lib/shop';
+import { shops, years, yearToString } from '../lib/shop';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
@@ -32,45 +36,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
-    const year = router.query.year === '0' ? 'Faculty' : router.query.year;
 
-    return <>
-        <Head>
-            <title>Step Competition {year}</title>
-        </Head>
-
-        <header>
-            <Link href="/">
-                <h1>Step Competition {year}</h1>
-            </Link>
-            <hr />
-            <nav>
-                <Link href="2021">
-                    2021
-                </Link>
-                <Link href="2022">
-                    2022
-                </Link>
-                <Link href="2023">
-                    2023
-                </Link>
-                <Link href="2024">
-                    2024
-                </Link>
-                <Link href="0">
-                    Faculty
-                </Link>
-            </nav>
-            <hr />
-        </header>
-
-        <main>
-            <dl>
-                {shops.map((shop, i) => (<>
-                    <dt>{shop}</dt>
-                    <dd>{steps[i]} Steps</dd>
-                </>))}
-            </dl>
-        </main>
-    </>;
+    return <div>
+        <Header year={router.query.year as string} />
+        <Entries steps={steps} />
+        <Footer />
+        <style jsx>{`
+            div {
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                min-height: 100vh;
+            }
+        `}</style>
+    </div>;
 }
