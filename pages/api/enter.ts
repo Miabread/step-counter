@@ -28,14 +28,17 @@ export default async (req: NowRequest, res: NowResponse) => {
     const body = req.body as Input;
     const email = emailRegex.exec(body.email);
 
-    let steps = parseInt(body.steps ?? '0');
+    let steps = parseInt(body.steps ?? '0', 10);
     if (!Number.isInteger(steps)) steps = 0;
+
+    let year = parseInt(email?.groups?.year ?? '0', 10);
+    if (!Number.isInteger(year)) year = 0;
 
     const data = {
         name: email?.groups?.name ?? 'error',
-        year: parseInt(email?.groups?.year ?? '0', 10),
+        year,
         shop: shops.findIndex(shop => shop === body.shop),
-        steps: parseInt(body.steps ?? '0'),
+        steps,
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
     };
