@@ -11,12 +11,12 @@ export function Header({ year = '' }) {
                     <title>Step Competition {yearToString(year)}</title>
                 </Head>
 
-                <a href="/"><img src="https://i.ibb.co/fCpvm1V/Stepactionclr.png" alt="Stepactionclr" /></a>
+                <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Stepactionclr" /></a>
 
                 <hr />
                 <nav className="tab">
                     <Link href="/">
-                        <a>Everyone</a>
+                        <a className='active'>Everyone</a>
                     </Link>
                     {years.map(y => (
                         <Link href={`/${y}`} key={y}>

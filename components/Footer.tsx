@@ -2,7 +2,7 @@ export function Footer() {
     return (
         <footer>
             <hr />
-            Logo Designer: Mylena Bovo &#8226; Coders: James Clark, Wyatt Allaby
+            Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt Allaby
             <style jsx>{`
                 footer {
                     text-align: center;
