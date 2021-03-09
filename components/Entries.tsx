@@ -23,7 +23,7 @@ export default function Entries({ steps }: { steps: number[] }) {
                     border-radius: 1em;
 
                     text-align: center;
-                    background-color: lightgrey;
+                    background-color: gold;
                 }
             `}</style>
         </main>

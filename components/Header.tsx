@@ -6,23 +6,26 @@ import { years, yearToString } from "../lib/shop";
 export function Header({ year = '' }) {
     return (
         <header>
-            <Head>
-                <title>Step Competition {yearToString(year)}</title>
-            </Head>
-            <h1>Step Competition {yearToString(year)}</h1>
-            <hr />
-            <nav className="tab">
-                <Link href="/">
-                    <a>Everyone</a>
-                </Link>
-                {years.map(y => (
-                    <Link href={`/${y}`} key={y}>
-                        <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
+            <body>
+                <Head>
+                    <title>Step Competition {yearToString(year)}</title>
+                </Head>
+
+                <a href="/"><img src="https://i.ibb.co/fCpvm1V/Stepactionclr.png" alt="Stepactionclr" /></a>
+
+                <hr />
+                <nav className="tab">
+                    <Link href="/">
+                        <a>Everyone</a>
                     </Link>
-                ))}
-            </nav>
-            <hr />
-            <style jsx>{`
+                    {years.map(y => (
+                        <Link href={`/${y}`} key={y}>
+                            <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
+                        </Link>
+                    ))}
+                </nav>
+                <hr />
+                <style jsx>{`
 
                 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
@@ -35,6 +38,13 @@ export function Header({ year = '' }) {
                     text-align: center;
                     background-color: navy;
                     height: 0.2em;
+                }
+
+                img {
+                    width: 10vw;
+                    height: 15vh;
+                    border: none;
+                    margin: 0% 0% 0% 45%;
                 }
 
                 nav {
@@ -58,15 +68,16 @@ export function Header({ year = '' }) {
                 }
 
                 /* Change background color of buttons on hover */
-                a:hover {
+                nav a:hover {
                     background-color: gold;
                 }
 
                 /* Create an active/current tablink class */
-                a.active {
+                nav a.active {
                     background-color: gold;
                 }
             `}</style>
+            </body>
         </header>
     );
 }
