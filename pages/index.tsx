@@ -86,7 +86,8 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     font-family: 'Anton', sans-serif;
                     border: 0.3em solid navy;
                     background-color: white;
-                    width: 20vw;
+                    width: 20%;
+                    height: auto;
                     margin: 5% 0% 0% 0%;
                 }
 
@@ -100,7 +101,8 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     font-family: 'Anton', sans-serif;
                     border: 0.3em solid navy;
                     background-color: white;
-                    width: 20vw;
+                    width: 25%;
+                    height: auto;
                     margin: 5% 0% 0% 0%;
                 }
             `}</style>
