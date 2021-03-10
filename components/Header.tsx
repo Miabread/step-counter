@@ -16,7 +16,7 @@ export function Header({ page }: Props) {
                 <title>Fitness Challenge {yearToString(page)}</title>
             </Head>
 
-            <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Fitness Challenge" /></a>
+            <a href="/"><img src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png" alt="Fitness Challenge" /></a>
 
             <hr />
             <nav className="tab">

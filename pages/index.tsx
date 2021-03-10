@@ -24,7 +24,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                 <title>Fitness Challenge</title>
             </Head>
             <article>
-                <img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Fitness Challenge" />
+                <img src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png" alt="Fitness Challenge" />
             </article>
 
             <div className="totalSteps">
