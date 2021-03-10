@@ -3,15 +3,15 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import Entries from '../components/Entries';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { prisma } from '../lib/prisma';
-import { shops, years, yearToString } from '../lib/shop';
+import Entries from '../../components/Entries';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { prisma } from '../../lib/prisma';
+import { shops, years, yearToString } from '../../lib/shop';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: years.map(y => `/${y}`),
+        paths: years.map(y => `/shops/${y}`),
         fallback: false,
     }
 }

@@ -14,11 +14,11 @@ export function Header({ year = '' }) {
 
             <hr />
             <nav className="tab">
-                <Link href="/">
+                <Link href="/shops/">
                     <a>Everyone</a>
                 </Link>
                 {years.map(y => (
-                    <Link href={`/${y}`} key={y}>
+                    <Link href={`/shops/${y}`} key={y}>
                         <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
                     </Link>
                 ))}
