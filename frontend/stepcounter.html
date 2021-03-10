@@ -14,18 +14,23 @@
     <header>
         <h1>Step Competition</h1>
     </header>
-    <section>
+    <article>
         <h2>Shops Totals</h2>
         <hr>
-    </section>
+    </article>
 
+    <!-- Every single tab ever made -->
     <div class="wholetab">
-        <div class="yeartabs">
-            <button class="tablinks" onclick="openShop(event, '2021')" id="defaultOpen">2021</button>
-            <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
-            <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
-            <button class="tablinks" onclick="openShop(event, '2024')">2024</button>
-            <button class="tablinks" onclick="openShop(event, 'Faculty')">Faculty</button>
+        <!-- Tabs as a whole -->
+        <div class="tab">
+            <!-- This is the customization of the tabs themselves -->
+            <div class="tab button">
+                <button class="tablinks" onclick="openShop(event, '2021')">2021</button>
+                <button class="tablinks" onclick="openShop(event, '2022')">2022</button>
+                <button class="tablinks" onclick="openShop(event, '2023')">2023</button>
+                <button class="tablinks" onclick="openShop(event, '2024')">2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Faculty')">Faculty</button>
+            </div>
         </div>
         <div id="2021" class="tabcontent">
             <div class="tab">
@@ -69,8 +74,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting Faculty</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing Faculty</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech Faculty</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech Faculty</button>
@@ -92,8 +97,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2024</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2024</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2024</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2024</button>
@@ -115,8 +120,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2022</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2022</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2022</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2022</button>
@@ -138,8 +143,8 @@
                 <button class="tablinks" onclick="openShop(event, 'Plumbing')">Plumbing 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Paint And Design')">Paint And Design 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Drafting')">Drafting 2023</button>
-                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced
-                    Manufacturing 2023</button>
+                <button class="tablinks" onclick="openShop(event, 'Advanced Manufacturing')">Advanced Manufacturing
+                    2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Collision')">Auto Collision 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'Auto Tech')">Auto Tech 2023</button>
                 <button class="tablinks" onclick="openShop(event, 'BioTech')">BioTech 2023</button>
@@ -219,20 +224,18 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <div class="totalSteps">
         <div class="total">
             <p>100,000,000 Total Steps</p>
         </div>
     </div>
+
+    <img src="stepactionclr.png" width="220vw" height="220vh" alt="" />
+
+    <footer>
+        <hr>
+        Logo Designer: Mylena Bovo, Coders: James Clark, Wyatt Allaby
+    </footer>
 
     <style>
         /* Imports fonts */
@@ -240,8 +243,7 @@
 
 
         body {
-            background-color: rgb(199, 199, 199);
-            /* background-color: gold; */
+            background-color: white;
         }
 
         h1 {
@@ -259,6 +261,27 @@
             background-color: navy;
             height: 1vh;
             width: 25vw;
+        }
+
+        footer hr {
+            display: block;
+            text-align: center;
+            background-color: navy;
+            height: 0.2em;
+            width: 75vw
+        }
+
+        footer {
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* This is for logo */
+        img {
+            width: 30vw;
+            height: 50vh;
+            border: none;
+            margin: 4% 2% 2% 38%;
         }
 
         /* Centers whole box */
@@ -282,23 +305,11 @@
             /* justify-content: space-evenly; */
         }
 
-        .yeartabs {
-            overflow: hidden;
-            border: 0.3em solid navy;
-            background-color: #f1f1f1;
-            color: navy;
-            text-align: center;
-            cursor: pointer;
-            padding: 1em;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
         /* Style the tab */
         .tab {
             overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
+            border: 1px solid white;
+            background-color: white;
         }
 
         /* Style the buttons inside the tab */

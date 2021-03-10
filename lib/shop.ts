@@ -26,3 +26,5 @@ export const years = [
     '2024',
     '0',
 ];
+
+export const yearToString = (year: string) => year === '0' ? 'Faculty' : year;
