@@ -6,26 +6,25 @@ import { years, yearToString } from "../lib/shop";
 export function Header({ year = '' }) {
     return (
         <header>
-            <body>
-                <Head>
-                    <title>Step Competition {yearToString(year)}</title>
-                </Head>
+            <Head>
+                <title>Step Competition {yearToString(year)}</title>
+            </Head>
 
-                <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Stepactionclr" /></a>
+            <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Stepactionclr" /></a>
 
-                <hr />
-                <nav className="tab">
-                    <Link href="/">
-                        <a className='active'>Everyone</a>
+            <hr />
+            <nav className="tab">
+                <Link href="/">
+                    <a>Everyone</a>
+                </Link>
+                {years.map(y => (
+                    <Link href={`/${y}`} key={y}>
+                        <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
                     </Link>
-                    {years.map(y => (
-                        <Link href={`/${y}`} key={y}>
-                            <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
-                        </Link>
-                    ))}
-                </nav>
-                <hr />
-                <style jsx>{`
+                ))}
+            </nav>
+            <hr />
+            <style jsx>{`
 
                 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
@@ -77,7 +76,6 @@ export function Header({ year = '' }) {
                     background-color: gold;
                 }
             `}</style>
-            </body>
         </header>
     );
 }
