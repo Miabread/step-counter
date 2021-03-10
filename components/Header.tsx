@@ -13,10 +13,10 @@ export function Header({ page }: Props) {
     return (
         <header>
             <Head>
-                <title>Step Competition {yearToString(page)}</title>
+                <title>Fitness Challenge {yearToString(page)}</title>
             </Head>
 
-            <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Stepactionclr" /></a>
+            <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Fitness Challenge" /></a>
 
             <hr />
             <nav className="tab">
@@ -50,10 +50,10 @@ export function Header({ page }: Props) {
                 }
 
                 img {
-                    width: 10vw;
-                    height: 15vh;
+                    width: 9%;
+                    height: auto;
                     border: none;
-                    margin: 0% 0% 0% 45%;
+                    margin: 1% 0% 0% 45%;
                 }
 
                 nav {
