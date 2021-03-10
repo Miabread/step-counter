@@ -21,5 +21,3 @@ export function Footer() {
         </footer>
     );
 }
-// total step counter
-// date submitted/not backwards

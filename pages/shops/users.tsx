@@ -7,24 +7,32 @@ import { prisma } from '../../lib/prisma';
 import { shops } from '../../lib/shop';
 
 export const getStaticProps = async () => {
-    const query = await prisma.entry.groupBy({
-        by: ['shop'],
-        sum: { steps: true },
+    // Prisma can't `distinct` and `groupBy` at the same time so we do it manually
+    const query = await prisma.entry.findMany({
+        select: {
+            shop: true,
+            name: true,
+            year: true,
+        },
+        distinct: ['name', 'year'],
     });
 
-    const shopSteps = Object.fromEntries(query.map(it => [it.shop, it.sum.steps]));
-    const steps = shops.map((_, it) => shopSteps[it] ?? 0);
+    const users = shops.map((_) => 0);
+
+    for (const { shop } of query) {
+        users[shop] += 1;
+    }
 
     return {
-        props: { steps },
+        props: { users },
         revalidate: 60,
     };
 };
 
-export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Users({ users }: InferGetStaticPropsType<typeof getStaticProps>) {
     return <div>
-        <Header page='index' />
-        <Entries data={steps} label="Steps" />
+        <Header page='users' />
+        <Entries data={users} label="Participants" />
         <Footer />
         <style jsx>{`
             div {

@@ -38,8 +38,8 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
     const router = useRouter();
 
     return <div>
-        <Header year={router.query.year as string} />
-        <Entries steps={steps} />
+        <Header page={router.query.year as string} />
+        <Entries data={steps} label="Steps" />
         <Footer />
         <style jsx>{`
             div {

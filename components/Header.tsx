@@ -3,11 +3,17 @@ import Link from "next/link";
 import React from "react";
 import { years, yearToString } from "../lib/shop";
 
-export function Header({ year = '' }) {
+interface Props {
+    page: string;
+}
+
+export function Header({ page }: Props) {
+    const activeIfPage = (match: string) => match === page ? 'active' : '';
+
     return (
         <header>
             <Head>
-                <title>Step Competition {yearToString(year)}</title>
+                <title>Step Competition {yearToString(page)}</title>
             </Head>
 
             <a href="/"><img src="https://i.ibb.co/GTqdQy3/logo.png" alt="Stepactionclr" /></a>
@@ -15,13 +21,17 @@ export function Header({ year = '' }) {
             <hr />
             <nav className="tab">
                 <Link href="/shops/">
-                    <a>Everyone</a>
+                    <a className={activeIfPage('index')}>Everyone</a>
                 </Link>
-                {years.map(y => (
-                    <Link href={`/shops/${y}`} key={y}>
-                        <a className={y === year ? 'active' : ''}>{yearToString(y)}</a>
+                {years.map(year => (
+                    <Link href={`/shops/${year}`} key={year}>
+                        <a className={activeIfPage(year)}>{yearToString(year)}</a>
                     </Link>
                 ))}
+
+                <Link href="/shops/users">
+                    <a className={activeIfPage('users')}>Participants</a>
+                </Link>
             </nav>
             <hr />
             <style jsx>{`

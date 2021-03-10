@@ -1,12 +1,17 @@
 import { shops } from "../lib/shop";
 
-export default function Entries({ steps }: { steps: number[] }) {
+interface Props {
+    data: number[];
+    label: string;
+}
+
+export default function Entries({ data, label }: Props) {
     return (
         <main>
             {shops.map((shop, i) => (
                 <section key={i}>
                     <h3>{shop}</h3>
-                    <p>{steps[i]} Steps</p>
+                    <p>{data[i]} {label}</p>
                 </section>
             ))}
             <style jsx>{`
