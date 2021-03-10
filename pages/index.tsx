@@ -101,9 +101,41 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     font-family: 'Anton', sans-serif;
                     border: 0.3em solid navy;
                     background-color: white;
+                    width: 27%;
+                    height: auto;
+                    margin: 5% 0% 0% 0%;
+                }
+
+                @media only screen and (max-width: 600px) {
+                    .totalSteps {
+                    display: flex;
+                    justify-content: space-around;
+                    text-align: center;
+                    }
+
+                    .total {
+                    font-family: 'Anton', sans-serif;
+                    border: 0.3em solid navy;
+                    background-color: white;
                     width: 30%;
                     height: auto;
                     margin: 5% 0% 0% 0%;
+                    }
+
+                    nav {
+                    display: flex;
+                    justify-content: space-around;
+                    text-align: center;
+                    }
+
+                    nav a {
+                    font-family: 'Anton', sans-serif;
+                    border: 0.3em solid navy;
+                    background-color: white;
+                    width: 40%;
+                    height: auto;
+                    margin: 5% 0% 0% 0%;
+                    }
                 }
             `}</style>
         </>
