@@ -47,6 +47,12 @@ export default function Index({
                 </a>
             </nav>
             <Footer />
+            <a href="http://assabet.org/">
+                <img
+                    src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
+                    alt="Assabet Logo"
+                />
+            </a>
             <style jsx>{`
                 article img {
                     /*Code for the step logo*/
