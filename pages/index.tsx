@@ -2,6 +2,7 @@ import { prisma } from '../lib/prisma';
 import Head from 'next/head';
 import React from 'react';
 import { InferGetStaticPropsType } from 'next';
+import { Footer } from '../components/Footer';
 
 export const getStaticProps = async () => {
     const query = await prisma.entry.aggregate({
@@ -33,30 +34,19 @@ export default function Index({
 
             <div className="totalSteps">
                 <div className="total">
-                    <h1>Step Total {steps}</h1>{' '}
+                    <h1>School Total</h1>
+                    <h2>{steps} Steps</h2>
                 </div>
             </div>
             <nav>
                 <a href="/shops">
-                    <h1>Per Shop BreakDown</h1>
-                </a>{' '}
+                    <h1>See Steps Per Shop</h1>
+                </a>
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
-                    <h1>Steps Form</h1>
+                    <h1>Submit Steps</h1>
                 </a>
             </nav>
-
-            <footer>
-                <hr />
-                Logo Designer: Mylena Bovo &#8226; Programmers: James Clark,
-                Wyatt Allaby
-                <a href="http://assabet.org/">
-                    <img
-                        src="https://i.ibb.co/8cSkx4y/assabetlogo.jpg"
-                        alt="assabetlogo"
-                    />
-                </a>
-            </footer>
-
+            <Footer />
             <style jsx>{`
                 article img {
                     /*Code for the step logo*/

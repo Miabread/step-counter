@@ -5,7 +5,8 @@ export function Footer() {
         <footer>
             <hr />
             Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt
-            Allaby
+            Allaby &#8226;{' '}
+            <a href="https://github.com/jamesBeeProg/step-counter">Source</a>
             <style jsx>{`
                 footer {
                     text-align: center;
