@@ -1,3 +1,4 @@
+//all imports from other files
 import { prisma } from "../lib/prisma";
 import Head from "next/head";
 import Link from "next/link";
@@ -17,6 +18,7 @@ export const getStaticProps = async () => {
     };
 };
 
+// how we initiate the HTML code
 export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
@@ -29,11 +31,11 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
 
             <div className="totalSteps">
                 <div className="total">
-                    <h1>Step Total {steps}</h1>
+                    <h1>Step Total {steps}</h1> {/* Where we pull the total steps from db */}
                 </div>
             </div>
             <nav>
-                <a href="/shops"><h1>Per Shop BreakDown</h1></a>
+                <a href="/shops"><h1>Per Shop BreakDown</h1></a> {/* These add links to other pages */}
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6"><h1>Steps Form</h1></a>
             </nav>
 
@@ -44,7 +46,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
             </footer>
 
             <style jsx>{`
-                article img {
+                article img { /*Code for the step logo*/
                     width: 25%;
                     height: auto;
                     border: none;
@@ -52,7 +54,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     margin-top: 2vh;
                 }
 
-                img {
+                img { /*Logo for Assabet*/
                     display: flex;
                     justify-content: left;
                     width: 5%;
@@ -61,7 +63,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     margin: 0% 0% 0% 1%;
                 }
 
-                footer {
+                footer { /*All footer styles are just used to customize the footer tag*/
                     text-align: center;
                     padding-top: 1em;
                     padding-bottom: 1em;
@@ -76,7 +78,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                 }
 
                 /* Centers whole box */
-                .totalSteps {
+                .totalSteps { /*Design for the total steps box and position*/
                     display: flex;
                     justify-content: space-around;
                     text-align: center;
@@ -91,7 +93,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     margin: 5% 0% 0% 0%;
                 }
 
-                nav {
+                nav { /* this is also for the links and their boxes */
                     display: flex;
                     justify-content: space-around;
                     text-align: center;
@@ -106,7 +108,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     margin: 5% 0% 0% 0%;
                 }
 
-                @media only screen and (max-width: 600px) {
+                @media only screen and (max-width: 600px) { /*This is the filter to check if the screen is 600px or less*/
                     .totalSteps {
                     display: flex;
                     justify-content: space-around;
@@ -117,7 +119,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     font-family: 'Anton', sans-serif;
                     border: 0.3em solid navy;
                     background-color: white;
-                    width: 40%;
+                    width: 40%; /*This is the size for a phone*/
                     height: auto;
                     margin: 5% 0% 0% 0%;
                     }
@@ -132,7 +134,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     font-family: 'Anton', sans-serif;
                     border: 0.3em solid navy;
                     background-color: white;
-                    width: 50%;
+                    width: 50%; /*This is the size for a phone*/
                     height: auto;
                     margin: 5% 0% 0% 0%;
                     }
