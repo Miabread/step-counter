@@ -40,10 +40,10 @@ export default function Index({
             </div>
             <nav>
                 <a href="/shops">
-                    <h1>See Steps Per Shop</h1>
+                    <h1>View # of Steps by Shop</h1>
                 </a>
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
-                    <h1>Submit Steps</h1>
+                    <h1>Submit Your Steps</h1>
                 </a>
             </nav>
             <Footer />
