@@ -7,16 +7,18 @@ datasource db {
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["groupBy"]
 }
 
 model Entry {
-    id       String   @id @default(cuid())
-    name     String
-    year     Int
-    shop     Int
-    steps    Int
-    date     DateTime
-    proofUrl String
+    id         String   @id @default(cuid())
+    name       String
+    year       Int
+    shop       Int
+    steps      Int
+    date       DateTime
+    sumbitDate DateTime @default(now())
+    proofUrl   String
+    verified   Boolean  @default(false)
 }
