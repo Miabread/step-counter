@@ -18,4 +18,5 @@
     },
     "eslint.packageManager": "yarn",
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "files.eol": "\n",
 }
