@@ -5,5 +5,17 @@
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "eslint.format.enable": true,
+    "editor.semanticHighlighting.enabled": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "node_modules/": true
+    },
+    "eslint.packageManager": "yarn",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
 }

@@ -26,7 +26,10 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                 <title>Fitness Challenge</title>
             </Head>
             <article>
-                <img src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png" alt="Fitness Challenge" />
+                <img
+                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
+                    alt="Fitness Challenge"
+                />
             </article>
 
             <div className="totalSteps">
@@ -41,8 +44,14 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
 
             <footer>
                 <hr />
-                Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt Allaby
-                <a href="http://assabet.org/"><img src="https://i.ibb.co/8cSkx4y/assabetlogo.jpg" alt="assabetlogo" /></a>
+                Logo Designer: Mylena Bovo &#8226; Programmers: James Clark,
+                Wyatt Allaby
+                <a href="http://assabet.org/">
+                    <img
+                        src="https://i.ibb.co/8cSkx4y/assabetlogo.jpg"
+                        alt="assabetlogo"
+                    />
+                </a>
             </footer>
 
             <style jsx>{`
@@ -74,7 +83,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     text-align: center;
                     background-color: navy;
                     height: 0.2em;
-                    width: 75vw
+                    width: 75vw;
                 }
 
                 /* Centers whole box */
@@ -110,9 +119,9 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
 
                 @media only screen and (max-width: 600px) { /*This is the filter to check if the screen is 600px or less*/
                     .totalSteps {
-                    display: flex;
-                    justify-content: space-around;
-                    text-align: center;
+                        display: flex;
+                        justify-content: space-around;
+                        text-align: center;
                     }
 
                     .total {
@@ -125,9 +134,9 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     }
 
                     nav {
-                    display: flex;
-                    justify-content: space-around;
-                    text-align: center;
+                        display: flex;
+                        justify-content: space-around;
+                        text-align: center;
                     }
 
                     nav a {

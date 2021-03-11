@@ -1,8 +1,11 @@
+import React from 'react';
+
 export function Footer() {
     return (
         <footer>
             <hr />
-            Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt Allaby
+            Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt
+            Allaby
             <style jsx>{`
                 footer {
                     text-align: center;
@@ -15,7 +18,7 @@ export function Footer() {
                     text-align: center;
                     background-color: navy;
                     height: 0.2em;
-                    width: 75vw
+                    width: 75vw;
                 }
             `}</style>
         </footer>

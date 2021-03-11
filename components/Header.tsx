@@ -1,14 +1,14 @@
-import Head from "next/head";
-import Link from "next/link";
-import React from "react";
-import { years, yearToString } from "../lib/shop";
+import Head from 'next/head';
+import Link from 'next/link';
+import React from 'react';
+import { years, yearToString } from '../lib/shop';
 
 interface Props {
     page: string;
 }
 
 export function Header({ page }: Props) {
-    const activeIfPage = (match: string) => match === page ? 'active' : '';
+    const activeIfPage = (match: string) => (match === page ? 'active' : '');
 
     return (
         <header>
@@ -16,16 +16,23 @@ export function Header({ page }: Props) {
                 <title>Fitness Challenge {yearToString(page)}</title>
             </Head>
 
-            <a href="/"><img src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png" alt="Fitness Challenge" /></a>
+            <a href="/">
+                <img
+                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
+                    alt="Fitness Challenge"
+                />
+            </a>
 
             <hr />
             <nav className="tab">
                 <Link href="/shops/">
                     <a className={activeIfPage('index')}>Everyone</a>
                 </Link>
-                {years.map(year => (
+                {years.map((year) => (
                     <Link href={`/shops/${year}`} key={year}>
-                        <a className={activeIfPage(year)}>{yearToString(year)}</a>
+                        <a className={activeIfPage(year)}>
+                            {yearToString(year)}
+                        </a>
                     </Link>
                 ))}
 
@@ -35,7 +42,6 @@ export function Header({ page }: Props) {
             </nav>
             <hr />
             <style jsx>{`
-
                 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
                 h1 {
