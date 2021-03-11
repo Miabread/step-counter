@@ -1,8 +1,7 @@
-import { prisma } from "../lib/prisma";
-import Head from "next/head";
-import Link from "next/link";
-import React from "react";
-import { InferGetStaticPropsType } from "next";
+import { prisma } from '../lib/prisma';
+import Head from 'next/head';
+import React from 'react';
+import { InferGetStaticPropsType } from 'next';
 
 export const getStaticProps = async () => {
     const query = await prisma.entry.aggregate({
@@ -17,14 +16,19 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Index({
+    steps,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head>
                 <title>Fitness Challenge</title>
             </Head>
             <article>
-                <img src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png" alt="Fitness Challenge" />
+                <img
+                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
+                    alt="Fitness Challenge"
+                />
             </article>
 
             <div className="totalSteps">
@@ -33,14 +37,24 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                 </div>
             </div>
             <nav>
-                <a href="/shops"><h1>Per Shop BreakDown</h1></a>
-                <a href="https://forms.gle/YWFLzeHt1Qne4HEV6"><h1>Steps Form</h1></a>
+                <a href="/shops">
+                    <h1>Per Shop BreakDown</h1>
+                </a>
+                <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
+                    <h1>Steps Form</h1>
+                </a>
             </nav>
 
             <footer>
                 <hr />
-                Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt Allaby
-                <a href="http://assabet.org/"><img src="https://i.ibb.co/8cSkx4y/assabetlogo.jpg" alt="assabetlogo" /></a>
+                Logo Designer: Mylena Bovo &#8226; Programmers: James Clark,
+                Wyatt Allaby
+                <a href="http://assabet.org/">
+                    <img
+                        src="https://i.ibb.co/8cSkx4y/assabetlogo.jpg"
+                        alt="assabetlogo"
+                    />
+                </a>
             </footer>
 
             <style jsx>{`
@@ -72,7 +86,7 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
                     text-align: center;
                     background-color: navy;
                     height: 0.2em;
-                    width: 75vw
+                    width: 75vw;
                 }
 
                 /* Centers whole box */
@@ -108,33 +122,33 @@ export default function Index({ steps }: InferGetStaticPropsType<typeof getStati
 
                 @media only screen and (max-width: 600px) {
                     .totalSteps {
-                    display: flex;
-                    justify-content: space-around;
-                    text-align: center;
+                        display: flex;
+                        justify-content: space-around;
+                        text-align: center;
                     }
 
                     .total {
-                    font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
-                    width: 40%;
-                    height: auto;
-                    margin: 5% 0% 0% 0%;
+                        font-family: 'Anton', sans-serif;
+                        border: 0.3em solid navy;
+                        background-color: white;
+                        width: 40%;
+                        height: auto;
+                        margin: 5% 0% 0% 0%;
                     }
 
                     nav {
-                    display: flex;
-                    justify-content: space-around;
-                    text-align: center;
+                        display: flex;
+                        justify-content: space-around;
+                        text-align: center;
                     }
 
                     nav a {
-                    font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
-                    width: 50%;
-                    height: auto;
-                    margin: 5% 0% 0% 0%;
+                        font-family: 'Anton', sans-serif;
+                        border: 0.3em solid navy;
+                        background-color: white;
+                        width: 50%;
+                        height: auto;
+                        margin: 5% 0% 0% 0%;
                     }
                 }
             `}</style>

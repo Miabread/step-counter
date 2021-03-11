@@ -1,15 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import { prisma } from "../../lib/prisma";
+import { prisma } from '../../lib/prisma';
 import { NowRequest, NowResponse } from '@vercel/node';
-import { shops } from "../../lib/shop";
+import { shops } from '../../lib/shop';
 
 interface Input {
-    email: string,
-    shop: string,
-    steps: string,
-    date: string,
-    proofUrl: string,
+    email: string;
+    shop: string;
+    steps: string;
+    date: string;
+    proofUrl: string;
 }
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
@@ -37,7 +35,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     const data = {
         name: email?.groups?.name ?? 'error',
         year,
-        shop: shops.findIndex(shop => shop === body.shop),
+        shop: shops.findIndex((shop) => shop === body.shop),
         steps,
         date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',

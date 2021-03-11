@@ -1,20 +1,18 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Entries from '../../components/Entries';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { prisma } from '../../lib/prisma';
-import { shops, years, yearToString } from '../../lib/shop';
+import { shops, years } from '../../lib/shop';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: years.map(y => `/shops/${y}`),
+        paths: years.map((y) => `/shops/${y}`),
         fallback: false,
-    }
-}
+    };
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const year = parseInt(context.params?.year as string, 10);
@@ -25,7 +23,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
         sum: { steps: true },
     });
 
-    const shopSteps = Object.fromEntries(query.map(it => [it.shop, it.sum.steps]));
+    const shopSteps = Object.fromEntries(
+        query.map((it) => [it.shop, it.sum.steps]),
+    );
     const steps = shops.map((_, it) => shopSteps[it] ?? 0);
 
     return {
@@ -34,19 +34,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
 };
 
-export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Index({
+    steps,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
 
-    return <div>
-        <Header page={router.query.year as string} />
-        <Entries data={steps} label="Steps" />
-        <Footer />
-        <style jsx>{`
-            div {
-                display: grid;
-                grid-template-rows: auto 1fr auto;
-                min-height: 100vh;
-            }
-        `}</style>
-    </div>;
+    return (
+        <div>
+            <Header page={router.query.year as string} />
+            <Entries data={steps} label="Steps" />
+            <Footer />
+            <style jsx>{`
+                div {
+                    display: grid;
+                    grid-template-rows: auto 1fr auto;
+                    min-height: 100vh;
+                }
+            `}</style>
+        </div>
+    );
 }

@@ -29,17 +29,21 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Users({ users }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <div>
-        <Header page='users' />
-        <Entries data={users} label="Participants" />
-        <Footer />
-        <style jsx>{`
-            div {
-                display: grid;
-                grid-template-rows: auto 1fr auto;
-                min-height: 100vh;
-            }
-        `}</style>
-    </div>;
+export default function Users({
+    users,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+    return (
+        <div>
+            <Header page="users" />
+            <Entries data={users} label="Participants" />
+            <Footer />
+            <style jsx>{`
+                div {
+                    display: grid;
+                    grid-template-rows: auto 1fr auto;
+                    min-height: 100vh;
+                }
+            `}</style>
+        </div>
+    );
 }

@@ -1,4 +1,5 @@
-import { shops } from "../lib/shop";
+import { shops } from '../lib/shop';
+import React from 'react';
 
 interface Props {
     data: number[];
@@ -11,7 +12,9 @@ export default function Entries({ data, label }: Props) {
             {shops.map((shop, i) => (
                 <section key={i}>
                     <h3>{shop}</h3>
-                    <p>{data[i]} {label}</p>
+                    <p>
+                        {data[i]} {label}
+                    </p>
                 </section>
             ))}
             <style jsx>{`

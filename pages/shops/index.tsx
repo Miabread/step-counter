@@ -12,7 +12,9 @@ export const getStaticProps = async () => {
         sum: { steps: true },
     });
 
-    const shopSteps = Object.fromEntries(query.map(it => [it.shop, it.sum.steps]));
+    const shopSteps = Object.fromEntries(
+        query.map((it) => [it.shop, it.sum.steps]),
+    );
     const steps = shops.map((_, it) => shopSteps[it] ?? 0);
 
     return {
@@ -21,17 +23,21 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Index({ steps }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <div>
-        <Header page='index' />
-        <Entries data={steps} label="Steps" />
-        <Footer />
-        <style jsx>{`
-            div {
-                display: grid;
-                grid-template-rows: auto 1fr auto;
-                min-height: 100vh;
-            }
-        `}</style>
-    </div>;
+export default function Index({
+    steps,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+    return (
+        <div>
+            <Header page="index" />
+            <Entries data={steps} label="Steps" />
+            <Footer />
+            <style jsx>{`
+                div {
+                    display: grid;
+                    grid-template-rows: auto 1fr auto;
+                    min-height: 100vh;
+                }
+            `}</style>
+        </div>
+    );
 }
