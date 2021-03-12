@@ -30,7 +30,7 @@ export default function Index({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <div>
-            <Header page="index" />
+            <Header page="" />
             <Entries data={steps} label="Steps" />
             <Footer />
             <style jsx>{`

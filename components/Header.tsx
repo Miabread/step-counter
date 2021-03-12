@@ -26,7 +26,7 @@ export function Header({ page }: Props) {
             <hr />
             <nav className="tab">
                 <Link href="/shops/">
-                    <a className={activeIfPage('index')}>Everyone</a>
+                    <a className={activeIfPage('')}>Everyone</a>
                 </Link>
                 {years.map((year) => (
                     <Link href={`/shops/${year}`} key={year}>
