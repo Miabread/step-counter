@@ -4,8 +4,8 @@ export function Footer() {
     return (
         <footer>
             <hr />
-            Logo Designer: Mylena Bovo &#8226; Programmers: James Clark, Wyatt
-            Allaby &#8226;{' '}
+            Programmers: James Clark, Wyatt Allaby, Tye Oulette &#8226; Logo
+            Designer: Mylena Bovo{' '}
             <a href="https://github.com/jamesBeeProg/step-counter">Source</a>
             <style jsx>{`
                 footer {
