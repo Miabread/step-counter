@@ -49,7 +49,7 @@ export default function Index({
                 </a>
             </nav>
             <Footer />
-            <a href="http://assabet.org/">
+            <a href="http://assabet.org/cms/one.aspx?pageId=36650809">
                 <img
                     src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
                     alt="Assabet Logo"
