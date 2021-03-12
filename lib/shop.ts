@@ -1,5 +1,5 @@
 export const shops = [
-    'No Shop',
+    'Academic/Support',
     'Advanced Manufacturing',
     'Auto Collision',
     'Auto Tech',
