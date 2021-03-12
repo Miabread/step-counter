@@ -3,7 +3,7 @@ import React from 'react';
 import Entries from '../../components/Entries';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { prisma } from '../../lib/prisma';
+import { closeIfProd, prisma } from '../../lib/prisma';
 import { shops } from '../../lib/shop';
 
 export const getStaticProps = async () => {
@@ -11,6 +11,8 @@ export const getStaticProps = async () => {
         by: ['shop'],
         sum: { steps: true },
     });
+
+    await closeIfProd();
 
     const shopSteps = Object.fromEntries(
         query.map((it) => [it.shop, it.sum.steps]),

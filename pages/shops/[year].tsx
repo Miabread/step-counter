@@ -4,7 +4,7 @@ import React from 'react';
 import Entries from '../../components/Entries';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
-import { prisma } from '../../lib/prisma';
+import { closeIfProd, prisma } from '../../lib/prisma';
 import { shops, years } from '../../lib/shop';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -22,6 +22,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
         where: { year },
         sum: { steps: true },
     });
+
+    await closeIfProd();
 
     const shopSteps = Object.fromEntries(
         query.map((it) => [it.shop, it.sum.steps]),

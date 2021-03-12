@@ -1,4 +1,4 @@
-import { prisma } from '../lib/prisma';
+import { closeIfProd, prisma } from '../lib/prisma';
 import Head from 'next/head';
 import React from 'react';
 import { InferGetStaticPropsType } from 'next';
@@ -10,6 +10,8 @@ export const getStaticProps = async () => {
             steps: true,
         },
     });
+
+    await closeIfProd();
 
     return {
         props: { steps: query.sum.steps },

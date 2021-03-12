@@ -8,7 +8,12 @@ declare global {
     }
 }
 
-export const prisma =
-    process.env.NODE_ENV === 'production'
-        ? new PrismaClient()
-        : global.prisma ?? new PrismaClient();
+const isProd = process.env.NODE_ENV === 'production';
+
+export const prisma = isProd
+    ? new PrismaClient()
+    : global.prisma ?? new PrismaClient();
+
+export const closeIfProd = async () => {
+    if (isProd) await prisma.$disconnect();
+};

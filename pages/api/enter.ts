@@ -1,5 +1,5 @@
-import { prisma } from '../../lib/prisma';
-import { NowRequest, NowResponse } from '@vercel/node';
+import { closeIfProd, prisma } from '../../lib/prisma';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import { shops } from '../../lib/shop';
 
 interface Input {
@@ -12,7 +12,7 @@ interface Input {
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
     if (typeof req.body !== 'object' || req.body == null) {
         res.status(400).send('Bad Request');
         return;
@@ -44,4 +44,6 @@ export default async (req: NowRequest, res: NowResponse) => {
     await prisma.entry.create({ data });
 
     res.status(200).send('Created');
+
+    await closeIfProd();
 };
