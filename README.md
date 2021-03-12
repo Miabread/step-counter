@@ -1,5 +1,5 @@
 # Step Counter
-## [Website](https://step-counter-jamesbeeprog.vercel.app/)
+# [Website](https://step-counter.vercel.app/)
 
 ## Development
 
