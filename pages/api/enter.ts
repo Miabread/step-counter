@@ -1,6 +1,6 @@
 import { usePrisma } from '../../lib/prisma';
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { shops } from '../../lib/data';
+import { shopToIndex } from '../../lib/data';
 
 interface Input {
     email: string;
@@ -43,7 +43,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         year: parseInteger(body.steps),
 
         // Enum
-        shop: shops.findIndex((shop) => shop === body.shop),
+        shop: shopToIndex(body.shop),
     };
 
     await usePrisma((prisma) => prisma.entry.create({ data }));

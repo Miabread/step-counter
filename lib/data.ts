@@ -19,6 +19,9 @@ const shops = [
     'Plumbing',
 ];
 
+export const shopToIndex = (shop: string) =>
+    shops.findIndex((it) => it === shop);
+
 export const shopEntries = shops
     // Don't include faculty in shop entries
     .slice(1)

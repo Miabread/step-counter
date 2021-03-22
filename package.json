@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "studio": "prisma studio",
-        "lint": "eslint --ignore-path .gitignore **/*.{js,ts,tsx} --fix"
+        "lint": "tsc --noEmit && eslint --ignore-path .gitignore **/*.{js,ts,tsx} --fix"
     },
     "dependencies": {
         "@prisma/client": "^2.18.0",
