@@ -1,10 +1,10 @@
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
-import Entries from '../../components/Entries';
+import { ShopEntries } from '../../components/ShopEntries';
 import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
+import { ShopHeader } from '../../components/ShopHeader';
 import { closeIfProd, prisma } from '../../lib/prisma';
-import { shops } from '../../lib/shop';
+import { shops } from '../../lib/data';
 
 export const getStaticProps = async () => {
     // Prisma can't `distinct` and `groupBy` at the same time so we do it manually
@@ -15,12 +15,15 @@ export const getStaticProps = async () => {
             year: true,
         },
         distinct: ['name', 'year'],
+        where: { year: { not: 0 } },
     });
 
     await closeIfProd();
 
+    // Prepare a count for each shop
     const users = shops.map((_) => 0);
 
+    // Count all query results
     for (const { shop } of query) {
         users[shop] += 1;
     }
@@ -36,8 +39,8 @@ export default function Users({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <div>
-            <Header page="users" />
-            <Entries data={users} label="Participants" />
+            <ShopHeader page="users" />
+            <ShopEntries data={users} label="Students" />
             <Footer />
             <style jsx>{`
                 div {

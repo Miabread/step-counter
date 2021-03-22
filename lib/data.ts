@@ -19,6 +19,6 @@ export const shops = [
     'Plumbing',
 ];
 
-export const years = ['2021', '2022', '2023', '2024', '0'];
+export const years = ['2021', '2022', '2023', '2024'];
 
-export const yearToString = (year: string) => (year === '0' ? 'Faculty' : year);
+export const yearToString = (year: string) => year;

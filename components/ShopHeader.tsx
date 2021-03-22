@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import { years, yearToString } from '../lib/shop';
+import { years, yearToString } from '../lib/data';
 
 interface Props {
     page: string;
 }
 
-export function Header({ page }: Props) {
+export function ShopHeader({ page }: Props) {
     const activeIfPage = (match: string) => (match === page ? 'active' : '');
 
     return (
@@ -26,8 +26,9 @@ export function Header({ page }: Props) {
             <hr />
             <nav className="tab">
                 <Link href="/shops/">
-                    <a className={activeIfPage('')}>Everyone</a>
+                    <a className={activeIfPage('')}>Students</a>
                 </Link>
+
                 {years.map((year) => (
                     <Link href={`/shops/${year}`} key={year}>
                         <a className={activeIfPage(year)}>

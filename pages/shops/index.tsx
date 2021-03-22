@@ -1,14 +1,15 @@
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
-import Entries from '../../components/Entries';
+import { ShopEntries } from '../../components/ShopEntries';
 import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
+import { ShopHeader } from '../../components/ShopHeader';
 import { closeIfProd, prisma } from '../../lib/prisma';
-import { shops } from '../../lib/shop';
+import { shops } from '../../lib/data';
 
 export const getStaticProps = async () => {
     const query = await prisma.entry.groupBy({
         by: ['shop'],
+        where: { year: { not: 0 } },
         sum: { steps: true },
     });
 
@@ -30,8 +31,8 @@ export default function Index({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <div>
-            <Header page="" />
-            <Entries data={steps} label="Steps" />
+            <ShopHeader page="" />
+            <ShopEntries data={steps} label="Steps" />
             <Footer />
             <style jsx>{`
                 div {

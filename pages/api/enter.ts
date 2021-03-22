@@ -1,6 +1,6 @@
 import { closeIfProd, prisma } from '../../lib/prisma';
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { shops } from '../../lib/shop';
+import { shops } from '../../lib/data';
 
 interface Input {
     email: string;

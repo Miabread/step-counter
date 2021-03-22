@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import Entries from '../../components/Entries';
+import { ShopEntries } from '../../components/ShopEntries';
 import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
+import { ShopHeader } from '../../components/ShopHeader';
 import { closeIfProd, prisma } from '../../lib/prisma';
-import { shops, years } from '../../lib/shop';
+import { shops, years } from '../../lib/data';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
@@ -43,8 +43,8 @@ export default function Index({
 
     return (
         <div>
-            <Header page={router.query.year as string} />
-            <Entries data={steps} label="Steps" />
+            <ShopHeader page={router.query.year as string} />
+            <ShopEntries data={steps} label="Steps" />
             <Footer />
             <style jsx>{`
                 div {
