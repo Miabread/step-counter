@@ -26,7 +26,7 @@ export function ShopHeader({ page }: Props) {
             <hr />
             <nav className="tab">
                 <Link href="/shops/">
-                    <a className={activeIfPage('')}>Students</a>
+                    <a className={activeIfPage('')}>All Students</a>
                 </Link>
 
                 {years.map((year) => (

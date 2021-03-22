@@ -1,4 +1,4 @@
-import { closeIfProd, prisma } from '../../lib/prisma';
+import { usePrisma } from '../../lib/prisma';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { shops } from '../../lib/data';
 
@@ -11,6 +11,12 @@ interface Input {
 }
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
+
+const parseInteger = (input = '0') => {
+    const result = parseInt(input, 10);
+    if (!Number.isInteger(result)) return 0;
+    return result;
+};
 
 export default async (req: VercelRequest, res: VercelResponse) => {
     if (typeof req.body !== 'object' || req.body == null) {
@@ -26,24 +32,21 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     const body = req.body as Input;
     const email = emailRegex.exec(body.email);
 
-    let steps = parseInt(body.steps ?? '0', 10);
-    if (!Number.isInteger(steps)) steps = 0;
-
-    let year = parseInt(email?.groups?.year ?? '0', 10);
-    if (!Number.isInteger(year)) year = 0;
-
     const data = {
+        // Strings
         name: email?.groups?.name ?? 'error',
-        year,
-        shop: shops.findIndex((shop) => shop === body.shop),
-        steps,
-        date: new Date(body.date ?? 'error'),
         proofUrl: body.proofUrl ?? 'error',
+        date: new Date(body.date ?? 'error'),
+
+        // Integers
+        steps: parseInteger(email?.groups?.year),
+        year: parseInteger(body.steps),
+
+        // Enum
+        shop: shops.findIndex((shop) => shop === body.shop),
     };
 
-    await prisma.entry.create({ data });
+    await usePrisma((prisma) => prisma.entry.create({ data }));
 
     res.status(200).send('Created');
-
-    await closeIfProd();
 };

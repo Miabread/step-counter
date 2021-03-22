@@ -1,17 +1,17 @@
-import { closeIfProd, prisma } from '../lib/prisma';
+import { usePrisma } from '../lib/prisma';
 import Head from 'next/head';
 import React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { Footer } from '../components/Footer';
 
 export const getStaticProps = async () => {
-    const query = await prisma.entry.aggregate({
-        sum: {
-            steps: true,
-        },
-    });
-
-    await closeIfProd();
+    const query = await usePrisma((prisma) =>
+        prisma.entry.aggregate({
+            sum: {
+                steps: true,
+            },
+        }),
+    );
 
     return {
         props: { steps: query.sum.steps },
