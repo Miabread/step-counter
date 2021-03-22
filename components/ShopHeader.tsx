@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import { years, yearToString } from '../lib/data';
+import { years } from '../lib/data';
 
 interface Props {
     page: string;
@@ -13,7 +13,7 @@ export function ShopHeader({ page }: Props) {
     return (
         <header>
             <Head>
-                <title>Fitness Challenge {yearToString(page)}</title>
+                <title>Fitness Challenge {page}</title>
             </Head>
 
             <a href="/">
@@ -31,9 +31,7 @@ export function ShopHeader({ page }: Props) {
 
                 {years.map((year) => (
                     <Link href={`/shops/${year}`} key={year}>
-                        <a className={activeIfPage(year)}>
-                            {yearToString(year)}
-                        </a>
+                        <a className={activeIfPage(year)}>{year}</a>
                     </Link>
                 ))}
 

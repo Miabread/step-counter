@@ -4,21 +4,25 @@ import { ShopEntries } from '../../components/ShopEntries';
 import { Footer } from '../../components/Footer';
 import { ShopHeader } from '../../components/ShopHeader';
 import { usePrisma } from '../../lib/prisma';
-import { shops } from '../../lib/data';
+import { createCount } from '../../lib/data';
 
 export const getStaticProps = async () => {
+    // Sum the steps of all shops excluding faculty
     const query = await usePrisma((prisma) =>
         prisma.entry.groupBy({
             by: ['shop'],
-            where: { year: { not: 0 } },
+            where: { year: { not: 0 }, shop: { not: 0 } },
             sum: { steps: true },
         }),
     );
 
-    const shopSteps = Object.fromEntries(
-        query.map((it) => [it.shop, it.sum.steps]),
-    );
-    const steps = shops.map((_, it) => shopSteps[it] ?? 0);
+    // Prepare a count for each shop
+    const steps = createCount();
+
+    // Count all query results
+    for (const { shop, sum } of query) {
+        steps[shop] += sum.steps;
+    }
 
     return {
         props: { steps },

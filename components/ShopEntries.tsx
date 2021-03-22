@@ -1,4 +1,4 @@
-import { shops } from '../lib/data';
+import { shopEntries } from '../lib/data';
 import React from 'react';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 export function ShopEntries({ data, label }: Props) {
     return (
         <main>
-            {shops.map((shop, i) => (
+            {shopEntries.map(([shop, i]) => (
                 <section key={i}>
                     <h3>{shop}</h3>
                     <p>

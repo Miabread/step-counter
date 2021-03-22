@@ -4,7 +4,7 @@ import { ShopEntries } from '../../components/ShopEntries';
 import { Footer } from '../../components/Footer';
 import { ShopHeader } from '../../components/ShopHeader';
 import { usePrisma } from '../../lib/prisma';
-import { shops } from '../../lib/data';
+import { createCount } from '../../lib/data';
 
 export const getStaticProps = async () => {
     // Prisma can't `distinct` and `groupBy` at the same time so we do it manually
@@ -21,7 +21,7 @@ export const getStaticProps = async () => {
     );
 
     // Prepare a count for each shop
-    const users = shops.map((_) => 0);
+    const users = createCount();
 
     // Count all query results
     for (const { shop } of query) {

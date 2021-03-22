@@ -1,4 +1,4 @@
-export const shops = [
+const shops = [
     'Academic/Support',
     'Advanced Manufacturing',
     'Auto Collision',
@@ -19,6 +19,13 @@ export const shops = [
     'Plumbing',
 ];
 
-export const years = ['2021', '2022', '2023', '2024'];
+export const shopEntries = shops
+    // Don't include faculty in shop entries
+    .slice(1)
+    // Also provide the original index so the consumer can retrieve the correct data
+    .map((it, i) => [it, i + 1] as const);
 
-export const yearToString = (year: string) => year;
+// Return a array of zeros the size of the `shops` array
+export const createCount = () => shops.map(() => 0);
+
+export const years = ['2021', '2022', '2023', '2024'];
