@@ -7,7 +7,7 @@ const shops = [
     'Business Tech',
     'CPWD',
     'Carpentry',
-    'Cosmo',
+    'Cosmetology',
     'Culinary',
     'Design and Visual',
     'Drafting',
