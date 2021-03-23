@@ -47,6 +47,9 @@ export default function Index({
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
                     <h1>Submit Your Steps</h1>
                 </a>
+                <a href="/faculty">
+                    <h1>Faculty Page</h1>
+                </a>
             </nav>
             <Footer />
             <a href="http://assabet.org/cms/one.aspx?pageId=36650809">

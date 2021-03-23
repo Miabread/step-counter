@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
+//import { stringify } from 'node:querystring';
 import React from 'react';
 import { usePrisma } from '../lib/prisma';
 
@@ -27,7 +28,7 @@ export default function List(
 ) {
     return (
         <ol>
-            <li>{props}</li>
+            <li>{props + ''}</li>
         </ol>
     );
 }
