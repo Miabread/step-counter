@@ -19,6 +19,9 @@ const shops = [
     'Plumbing',
 ];
 
+export const shopToIndex = (shop: string) =>
+    shops.findIndex((it) => it === shop);
+
 export const shopEntries = shops
     // Don't include faculty in shop entries
     .slice(1)
@@ -27,5 +30,7 @@ export const shopEntries = shops
 
 // Return a array of zeros the size of the `shops` array
 export const createCount = () => shops.map(() => 0);
+
+export const numberOfShops = shops.length;
 
 export const years = ['2021', '2022', '2023', '2024'];
