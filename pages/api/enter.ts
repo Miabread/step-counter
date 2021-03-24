@@ -36,7 +36,8 @@ const reportError = async (req: VercelRequest, res: VercelResponse) => {
             },
         });
         res.status(200).send('Handled');
-    } catch {
+    } catch (e) {
+        console.error(e);
         res.status(500).send('Internal server error');
     }
 };
