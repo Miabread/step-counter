@@ -16,7 +16,8 @@ const reportError = async (req: VercelRequest, res: VercelResponse) => {
     const message = {
         embeds: [
             {
-                description: '```json\n' + JSON.stringify(req.body) + '```',
+                description:
+                    '```json\n' + JSON.stringify(req.body, null, 2) + '```',
                 color: 13704477,
                 timestamp: new Date().toISOString(),
                 image: {
