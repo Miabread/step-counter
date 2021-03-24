@@ -11,6 +11,7 @@ interface Input {
 }
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
+const maxSteps = 1_000_000;
 
 const reportError = async (req: VercelRequest, res: VercelResponse) => {
     const message = {
@@ -36,7 +37,8 @@ const reportError = async (req: VercelRequest, res: VercelResponse) => {
             },
         });
         res.status(200).send('Handled');
-    } catch {
+    } catch (e) {
+        console.error(e);
         res.status(500).send('Internal server error');
     }
 };
@@ -46,7 +48,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         return reportError(req, res);
     }
 
-    if (req.body.key !== process.env.WEBHOOK_KEY) {
+    if (req.body.key !== process.env.GOOGLE_SECRET) {
         res.status(401).send('Unauthorized');
         return;
     }
@@ -84,6 +86,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         year < 0 ||
         !Number.isInteger(steps) ||
         steps < 0 ||
+        steps > maxSteps ||
         shop == null
     ) {
         return reportError(req, res);
