@@ -11,6 +11,7 @@ interface Input {
 }
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
+const maxSteps = 1_000_000;
 
 const reportError = async (req: VercelRequest, res: VercelResponse) => {
     const message = {
@@ -85,6 +86,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         year < 0 ||
         !Number.isInteger(steps) ||
         steps < 0 ||
+        steps > maxSteps ||
         shop == null
     ) {
         return reportError(req, res);
