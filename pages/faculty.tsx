@@ -68,8 +68,8 @@ export default function Index({
                 }
 
                 h1 {
-                    margin-left: 4vw;
-                    margin-top: 20vh;
+                    margin-left: 3vw;
+                    margin-top: 14vh;
                 }
 
                 .totalSteps {
@@ -81,8 +81,8 @@ export default function Index({
 
                 .total {
                     font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
+                    border: 0.3em solid #185fac;
+                    background-color: #fff36d;
                     width: 25%;
                     height: auto;
                     margin: 5% 0% 0% 0%;
@@ -97,8 +97,8 @@ export default function Index({
 
                 nav a {
                     font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
+                    border: 0.3em solid #185fac;
+                    background-color: #fff36d;
                     width: 27%;
                     height: auto;
                     margin: 5% 0% 0% 0%;
@@ -114,7 +114,7 @@ export default function Index({
 
                     .total {
                         font-family: 'Anton', sans-serif;
-                        border: 0.3em solid navy;
+                        border: 0.3em solid #185fac;
                         background-color: white;
                         width: 40%; /*This is the size for a phone*/
                         height: auto;
@@ -129,7 +129,7 @@ export default function Index({
 
                     nav a {
                         font-family: 'Anton', sans-serif;
-                        border: 0.3em solid navy;
+                        border: 0.3em solid #185fac;
                         background-color: white;
                         width: 50%; /*This is the size for a phone*/
                         height: auto;

@@ -17,7 +17,7 @@ export function Footer() {
                 footer hr {
                     display: block;
                     text-align: center;
-                    background-color: navy;
+                    background-color: #185fac;
                     height: 0.2em;
                     width: 75vw;
                 }

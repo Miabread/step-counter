@@ -78,21 +78,6 @@ export default function Index({
                     margin: 0% 0% 0% 1%;
                 }
 
-                footer {
-                    /*All footer styles are just used to customize the footer tag*/
-                    text-align: center;
-                    padding-top: 1em;
-                    padding-bottom: 1em;
-                    font-style: italic;
-                }
-                footer hr {
-                    display: block;
-                    text-align: center;
-                    background-color: navy;
-                    height: 0.2em;
-                    width: 75vw;
-                }
-
                 /* Centers whole box */
                 .totalSteps {
                     /*Design for the total steps box and position*/
@@ -103,8 +88,8 @@ export default function Index({
 
                 .total {
                     font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
+                    border: 0.3em solid #185fac;
+                    background-color: #fff36d;
                     width: 25%;
                     height: auto;
                     margin: 5% 0% 0% 0%;
@@ -119,8 +104,8 @@ export default function Index({
 
                 nav a {
                     font-family: 'Anton', sans-serif;
-                    border: 0.3em solid navy;
-                    background-color: white;
+                    border: 0.3em solid #185fac;
+                    background-color: #fff36d;
                     width: 27%;
                     height: auto;
                     margin: 5% 0% 0% 0%;
