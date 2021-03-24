@@ -48,7 +48,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         return reportError(req, res);
     }
 
-    if (req.body.key !== process.env.WEBHOOK_KEY) {
+    if (req.body.key !== process.env.GOOGLE_SECRET) {
         res.status(401).send('Unauthorized');
         return;
     }
