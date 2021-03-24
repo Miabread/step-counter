@@ -1,107 +1,52 @@
 import { usePrisma } from '../../lib/prisma';
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import { shopToIndex } from '../../lib/data';
-
-interface Input {
-    email?: string;
-    shop?: string;
-    steps?: string;
-    date?: string;
-    proofUrl?: string;
-}
+import { shopToIndex, shops } from '../../lib/data';
+import { handleErrors } from '../../lib/error';
+import ow from 'ow';
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
+
 const maxSteps = 1_000_000;
+const maxYear = 2050;
+const startDate = new Date(2021, 2, 12);
 
-const reportError = async (req: VercelRequest, res: VercelResponse) => {
-    const message = {
-        embeds: [
-            {
-                description:
-                    '```json\n' + JSON.stringify(req.body, null, 2) + '```',
-                color: 13704477,
-                timestamp: new Date().toISOString(),
-                image: {
-                    url: `https://drive.google.com/file/d/${req.body.proofUrl}/view`,
-                },
-            },
-        ],
-    };
+export default handleErrors(async (req, res) => {
+    ow(
+        req.body,
+        ow.object.exactShape({
+            key: ow.string.equals(process.env.GOOGLE_SECRET ?? ''),
+            email: ow.string.matches(emailRegex),
+            proofUrl: ow.string.nonEmpty,
+            date: ow.string.nonEmpty.date,
+            steps: ow.string.nonEmpty.numeric,
+            shop: ow.string.oneOf(shops),
+        }),
+    );
 
-    try {
-        await fetch(process.env.WEBHOOK_URL ?? '', {
-            method: 'POST',
-            body: JSON.stringify(message),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        res.status(200).send('Handled');
-    } catch (e) {
-        console.error(e);
-        res.status(500).send('Internal server error');
-    }
-};
-
-export default async (req: VercelRequest, res: VercelResponse) => {
-    if (typeof req.body !== 'object' || req.body == null) {
-        return reportError(req, res);
-    }
-
-    if (req.body.key !== process.env.GOOGLE_SECRET) {
-        res.status(401).send('Unauthorized');
-        return;
-    }
-
-    const body = req.body as Input;
-
-    if (
-        body.email == null ||
-        body.proofUrl == null ||
-        body.date == null ||
-        body.steps == null ||
-        body.shop == null
-    ) {
-        return reportError(req, res);
-    }
-
-    const email = emailRegex.exec(body.email);
-
-    if (email?.groups?.name == null || email.groups.year == null) {
-        return reportError(req, res);
-    }
-
-    const name = email.groups.name;
-
-    const proofUrl = body.proofUrl;
-    const date = new Date(body.date);
-
-    const year = parseInt(email.groups.year, 10);
-    const steps = parseInt(body.steps, 10);
-
-    const shop = shopToIndex(body.shop);
-
-    if (
-        !Number.isInteger(year) ||
-        year < 0 ||
-        !Number.isInteger(steps) ||
-        steps < 0 ||
-        steps > maxSteps ||
-        shop == null
-    ) {
-        return reportError(req, res);
-    }
+    const email = emailRegex.exec(req.body.email);
 
     const data = {
-        name,
-        proofUrl,
-        date,
-        steps,
-        year,
-        shop,
+        name: email?.groups?.name,
+        proofUrl: req.body.proofUrl,
+        date: new Date(req.body.date),
+        steps: parseInt(req.body.steps, 10),
+        // `or` is used to also catch empty strings
+        year: parseInt(email?.groups?.year || '0', 10),
+        shop: shopToIndex(req.body.shop),
     };
+
+    ow(
+        data,
+        ow.object.exactShape({
+            name: ow.string.nonEmpty.alphabetical,
+            proofUrl: ow.string.nonEmpty,
+            date: ow.date.after(startDate).before(new Date()),
+            steps: ow.number.integer.inRange(0, maxSteps),
+            year: ow.number.integer.inRange(0, maxYear),
+            shop: ow.number.inRange(0, shops.length),
+        }),
+    );
 
     await usePrisma((prisma) => prisma.entry.create({ data }));
 
     res.status(200).send('Created');
-};
+});

@@ -1,4 +1,4 @@
-const shops = [
+export const shops = [
     'Academic/Support',
     'Advanced Manufacturing',
     'Auto Collision',
