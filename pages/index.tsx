@@ -121,8 +121,8 @@ export default function Index({
 
                     .total {
                         font-family: 'Anton', sans-serif;
-                        border: 0.3em solid navy;
-                        background-color: white;
+                        border: 0.3em solid #185fac;
+                        background-color: #fff36d;
                         width: 40%; /*This is the size for a phone*/
                         height: auto;
                         margin: 5% 0% 0% 0%;
@@ -136,8 +136,8 @@ export default function Index({
 
                     nav a {
                         font-family: 'Anton', sans-serif;
-                        border: 0.3em solid navy;
-                        background-color: white;
+                        border: 0.3em solid #185fac;
+                        background-color: #fff36d;
                         width: 50%; /*This is the size for a phone*/
                         height: auto;
                         margin: 5% 0% 0% 0%;
