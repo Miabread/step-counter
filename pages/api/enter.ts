@@ -12,10 +12,37 @@ interface Input {
 
 const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
 
+const reportError = async (req: VercelRequest, res: VercelResponse) => {
+    const message = {
+        embeds: [
+            {
+                description: '```json\n' + JSON.stringify(req.body) + '```',
+                color: 13704477,
+                timestamp: new Date().toISOString(),
+                image: {
+                    url: `https://drive.google.com/file/d/${req.body.proofUrl}/view`,
+                },
+            },
+        ],
+    };
+
+    try {
+        await fetch(process.env.WEBHOOK_URL ?? '', {
+            method: 'POST',
+            body: JSON.stringify(message),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(200).send('Handled');
+    } catch {
+        res.status(500).send('Internal server error');
+    }
+};
+
 export default async (req: VercelRequest, res: VercelResponse) => {
     if (typeof req.body !== 'object' || req.body == null) {
-        res.status(400).send('Bad Request');
-        return;
+        return reportError(req, res);
     }
 
     if (req.body.key !== process.env.WEBHOOK_KEY) {
@@ -32,15 +59,13 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         body.steps == null ||
         body.shop == null
     ) {
-        res.status(400).send('Bad Request');
-        return;
+        return reportError(req, res);
     }
 
     const email = emailRegex.exec(body.email);
 
     if (email?.groups?.name == null || email.groups.year == null) {
-        res.status(400).send('Bad Request');
-        return;
+        return reportError(req, res);
     }
 
     const name = email.groups.name;
@@ -60,8 +85,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         steps < 0 ||
         shop == null
     ) {
-        res.status(400).send('Bad Request');
-        return;
+        return reportError(req, res);
     }
 
     const data = {
