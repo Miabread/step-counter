@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
+import { equal } from 'node:assert';
 // import { stringify } from 'node:querystring';
 import React from 'react';
 import { usePrisma } from '../lib/prisma';
@@ -15,12 +16,12 @@ export const getStaticProps = async () => {
             where: {
                 year: { not: 0 },
                 sumbitDate: {
-                    gt: new Date(2021, 2, 12),
-                    lt: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 12),
+                    lte: new Date(2021, 2, 18),
                 },
                 date: {
-                    gt: new Date(2021, 2, 12),
-                    lt: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 12),
+                    lte: new Date(2021, 2, 18),
                 },
             },
         }),
