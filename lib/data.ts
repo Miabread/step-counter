@@ -33,4 +33,4 @@ export const createCount = () => shops.map(() => 0);
 
 export const numberOfShops = shops.length;
 
-export const years = ['2021', '2022', '2023', '2024'];
+export const years = [2021, 2022, 2023, 2024];

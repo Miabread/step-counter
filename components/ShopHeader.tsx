@@ -31,7 +31,7 @@ export function ShopHeader({ page }: Props) {
 
                 {years.map((year) => (
                     <Link href={`/shops/${year}`} key={year}>
-                        <a className={activeIfPage(year)}>{year}</a>
+                        <a className={activeIfPage(String(year))}>{year}</a>
                     </Link>
                 ))}
 
