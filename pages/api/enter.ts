@@ -3,7 +3,7 @@ import { shopToIndex, shops } from '../../lib/data';
 import { handleErrors } from '../../lib/error';
 import ow from 'ow';
 
-const emailRegex = /^(?<name>[a-zA-Z]+)(?<year>\d*)@/;
+const emailRegex = /^(?<name>[a-zA-Z-]+)(?<year>\d*)@/;
 
 const maxSteps = 1_000_000;
 const maxYear = 2050;
