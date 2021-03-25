@@ -7,7 +7,7 @@ export const getStaticProps = async () => {
     const props = await usePrisma(async (prisma) => {
         // Sum all steps of faculty
         const steps = await prisma.entry.aggregate({
-            where: { year: 0 },
+            where: { year: 0, verified: true },
             sum: {
                 steps: true,
             },

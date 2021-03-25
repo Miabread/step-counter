@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const query = await usePrisma((prisma) =>
         prisma.entry.groupBy({
             by: ['shop'],
-            where: { year, shop: { not: 0 } },
+            where: { year, shop: { not: 0 }, verified: true },
             sum: { steps: true },
         }),
     );

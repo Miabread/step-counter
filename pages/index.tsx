@@ -7,6 +7,9 @@ import { Footer } from '../components/Footer';
 export const getStaticProps = async () => {
     const query = await usePrisma((prisma) =>
         prisma.entry.aggregate({
+            where: {
+                verified: true,
+            },
             sum: {
                 steps: true,
             },
