@@ -5,6 +5,8 @@ type Handle = (req: VercelRequest, res: VercelResponse) => Promise<unknown>;
 const codeBlock = (lang: string, input: string) =>
     '```' + `${lang}\n${input}` + '```';
 
+const link = (name: string, url: string) => `[${name}](${url})`;
+
 const createMessage = (
     error: unknown,
     body: unknown,
@@ -12,15 +14,16 @@ const createMessage = (
 ) => ({
     embeds: [
         {
-            description: `${error}\n${codeBlock(
-                'json',
-                JSON.stringify(body, null, 2),
-            )}`,
+            description: [
+                `${error}\n`,
+                codeBlock('json', JSON.stringify(body, null, 2)),
+                link(
+                    'Proof',
+                    `https://drive.google.com/file/d/${proofUrl}/view`,
+                ),
+            ].join('\n'),
             color: 13704477,
             timestamp: new Date().toISOString(),
-            image: {
-                url: `https://drive.google.com/file/d/${proofUrl}/view`,
-            },
         },
     ],
 });

@@ -9,6 +9,8 @@ const maxSteps = 1_000_000;
 const maxYear = 2050;
 const startDate = new Date(2021, 2, 12);
 
+const now = () => new Date();
+
 export default handleErrors(async (req, res) => {
     ow(
         req.body,
@@ -39,10 +41,10 @@ export default handleErrors(async (req, res) => {
         ow.object.exactShape({
             name: ow.string.nonEmpty.alphabetical,
             proofUrl: ow.string.nonEmpty,
-            date: ow.date.after(startDate).before(new Date()),
+            date: ow.date.after(startDate).before(now()),
             steps: ow.number.integer.inRange(0, maxSteps),
             year: ow.number.integer.inRange(0, maxYear),
-            shop: ow.number.inRange(0, shops.length),
+            shop: ow.number.integer.inRange(0, shops.length),
         }),
     );
 
