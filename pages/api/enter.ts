@@ -4,6 +4,7 @@ import { handleErrors } from '../../lib/error';
 import ow from 'ow';
 
 const emailRegex = /^(?<name>[a-zA-Z-]+)(?<year>\d*)@/;
+const nameRegex = /^[a-zA-Z-]+$/;
 
 const maxSteps = 1_000_000;
 const maxYear = 2050;
@@ -39,7 +40,7 @@ export default handleErrors(async (req, res) => {
     ow(
         data,
         ow.object.exactShape({
-            name: ow.string.nonEmpty.alphabetical,
+            name: ow.string.nonEmpty.matches(nameRegex),
             proofUrl: ow.string.nonEmpty,
             date: ow.date.after(startDate).before(now()),
             steps: ow.number.integer.inRange(0, maxSteps),
