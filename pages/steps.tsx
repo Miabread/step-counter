@@ -1,63 +1,89 @@
 import React, { useState } from 'react';
-import { years } from '../lib/data';
+import { shops, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
+import { createStyle } from '../lib/css';
+import css from './steps.module.css';
+import { InferGetStaticPropsType } from 'next';
 
-// export const getStaticProps = async () => {
-//     const query = await usePrisma(async (prisma) => {});
+const style = createStyle(css);
 
-//     prisma.entry.aggregate({
-//         where: {
-//             year,
-//             verified: true,
-//         },
-//         sum: {
-//             steps: true,
-//         },
-//     });
+export const getStaticProps = async () => {
+    const data = await usePrisma((prisma) =>
+        Promise.all(
+            years.map((year) =>
+                prisma.entry.groupBy({
+                    by: ['shop'],
+                    where: { year, shop: { not: 0 }, verified: true },
+                    sum: { steps: true },
+                }),
+            ),
+        ),
+    );
 
-//     return {
-//         props: { steps: query.sum.steps },
-//         revalidate: 60,
-//     };
-// };
+    return {
+        props: { data },
+        revalidate: 60,
+    };
+};
 
-export default function Steps() {
+export default function Steps({
+    data,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
     const [selection, setSelection] = useState<Record<string, boolean>>({});
 
-    return (
-        <div>
-            {years.map((year, i) => (
-                <React.Fragment key={i}>
-                    <input
-                        type="checkbox"
-                        id={String(year)}
-                        name={String(year)}
-                        checked={selection[year]}
-                        onChange={(event) =>
-                            setSelection({
-                                ...selection,
-                                [year]: event.target.checked,
-                            })
-                        }
-                    />
-                    <label htmlFor={String(year)}>{year}</label>
-                </React.Fragment>
-            ))}
-            {JSON.stringify(
-                Object.entries(selection)
-                    .filter(([_, it]) => it)
-                    .map(([it]) => +it),
-                null,
-                2,
-            )}
-            <style jsx>{`
-                div {
-                    width: 50vw;
-                    margin: auto;
-                    display: flex;
-                    flex-flow: column;
+    const steps = data
+        // Keep only years that are selected
+        .filter((_, i) => selection[years[i]])
+        // We don't care about year info past this point
+        .flat()
+        // Loop through all entries and count for each shop
+        .reduce(
+            (acc, it) => {
+                // We own `acc`, mutation is fine
+                acc[it.shop] += it.sum.steps;
+                return acc;
+            },
+            // Make space for each shop with initial count 0
+            shops.map(() => 0),
+        )
+        // Assuming order is the same as `shops`, pair the count with their shop's name
+        .map((it, i) => [shops[i], it] as const)
+        // Ignore any shops with 0 steps
+        .filter((it) => it[1] > 0);
+
+    // Sort shops by decreasing steps
+    steps.sort((a, b) => b[1] - a[1]);
+
+    const stepsDisplay = steps.map(([shop, steps], key) => (
+        <React.Fragment key={key}>
+            <dt>{shop}</dt>
+            <dd>{steps}</dd>
+        </React.Fragment>
+    ));
+
+    const checkboxes = years.map((year, i) => (
+        <React.Fragment key={i}>
+            <input
+                type="checkbox"
+                id={String(year)}
+                name={String(year)}
+                checked={selection[year]}
+                onChange={(event) =>
+                    setSelection({
+                        ...selection,
+                        [year]: event.target.checked,
+                    })
                 }
-            `}</style>
+            />
+            <label htmlFor={String(year)}>{year}</label>
+        </React.Fragment>
+    ));
+
+    return (
+        <div className={style('grid-container')}>
+            <div className={style('top')}></div>
+            <aside className={style('sidebar')}>{checkboxes}</aside>
+            <dl className={style('main')}>{stepsDisplay}</dl>
         </div>
     );
 }

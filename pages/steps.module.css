@@ -1,0 +1,30 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.4fr 1.6fr;
+  grid-template-rows: 0.3fr 1.7fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "top top"
+    "side main";
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.top {
+    grid-area: top;
+    background-color: blue;
+}
+
+.sidebar {
+    grid-area: side;
+    background-color: yellow;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.main {
+    grid-area: main;
+    background-color: gray;
+}
