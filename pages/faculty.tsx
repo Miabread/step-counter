@@ -1,67 +1,63 @@
-import { usePrisma } from '../lib/prisma';
-import Head from 'next/head';
-import React from 'react';
 import { InferGetStaticPropsType } from 'next';
+import React from 'react';
 import { Footer } from '../components/Footer';
+import { usePrisma } from '../lib/prisma';
 
 export const getStaticProps = async () => {
-    const query = await usePrisma((prisma) =>
-        prisma.entry.aggregate({
-            where: {
-                verified: true,
-            },
+    const props = await usePrisma(async (prisma) => {
+        // Sum all steps of faculty
+        const steps = await prisma.entry.aggregate({
+            where: { year: 0, verified: true },
             sum: {
                 steps: true,
             },
-        }),
-    );
+        });
+
+        // Count all unique faculty
+        const users = await prisma.entry.findMany({
+            distinct: ['name'],
+            where: { year: 0 },
+        });
+
+        return { steps: steps.sum.steps, users: users.length };
+    });
 
     return {
-        props: { steps: query.sum.steps },
+        props,
         revalidate: 60,
     };
 };
 
 export default function Index({
     steps,
+    users,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <>
-            <Head>
-                <title>Fitness Challenge</title>
-            </Head>
+        <div>
             <article>
-                <img
-                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
-                    alt="Fitness Challenge"
-                />
+                <a href="/">
+                    <img
+                        src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
+                        alt="Fitness Challenge"
+                    />
+                </a>
             </article>
-
-            <div className="totalSteps">
-                <div className="total">
-                    <h1>School Total</h1>
-                    <h2>{steps} Steps</h2>
-                </div>
-            </div>
-            <nav>
-                <a href="/shops">
-                    <h1>View # of Steps by Shop</h1>
-                </a>
-                <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
-                    <h1>Submit Your Steps</h1>
-                </a>
-                <a href="/faculty">
-                    <h1>Faculty Page</h1>
-                </a>
+            <nav className="text">
+                <h1>Total Faculty Steps</h1>
+                <h1>Total Faculty Participating</h1>
+            </nav>
+            <nav className="totalSteps">
+                <nav className="total">
+                    <p>{steps}</p>
+                </nav>
+                <nav className="total">
+                    <p>{users}</p>
+                </nav>
             </nav>
             <Footer />
-            <a href="http://assabet.org/cms/one.aspx?pageId=36650809">
-                <img
-                    src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
-                    alt="Assabet Logo"
-                />
-            </a>
             <style jsx>{`
+                @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
                 article img {
                     /*Code for the step logo*/
                     width: 25%;
@@ -71,17 +67,11 @@ export default function Index({
                     margin-top: 2vh;
                 }
 
-                img {
-                    /*Logo for Assabet*/
-                    display: flex;
-                    justify-content: left;
-                    width: 5%;
-                    height: auto;
-                    border: none;
-                    margin: 0% 0% 0% 1%;
+                h1 {
+                    margin-left: 3vw;
+                    margin-top: 14vh;
                 }
 
-                /* Centers whole box */
                 .totalSteps {
                     /*Design for the total steps box and position*/
                     display: flex;
@@ -125,7 +115,7 @@ export default function Index({
                     .total {
                         font-family: 'Anton', sans-serif;
                         border: 0.3em solid #185fac;
-                        background-color: #fff36d;
+                        background-color: white;
                         width: 40%; /*This is the size for a phone*/
                         height: auto;
                         margin: 5% 0% 0% 0%;
@@ -140,13 +130,13 @@ export default function Index({
                     nav a {
                         font-family: 'Anton', sans-serif;
                         border: 0.3em solid #185fac;
-                        background-color: #fff36d;
+                        background-color: white;
                         width: 50%; /*This is the size for a phone*/
                         height: auto;
                         margin: 5% 0% 0% 0%;
                     }
                 }
             `}</style>
-        </>
+        </div>
     );
 }
