@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { shops, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
 import { createStyle } from '../lib/css';
-import css from './steps.module.css';
+import css from './shops.module.css';
 import { InferGetStaticPropsType } from 'next';
 
 const style = createStyle(css);
@@ -26,7 +26,7 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Steps({
+export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [selection, setSelection] = useState<Record<string, boolean>>({});
