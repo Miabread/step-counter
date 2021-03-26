@@ -44,14 +44,11 @@ export default function Index({
                 </div>
             </div>
             <nav>
-                <a href="/shops">
+                <a href="/steps">
                     <h1>View # of Steps by Shop</h1>
                 </a>
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
                     <h1>Submit Your Steps</h1>
-                </a>
-                <a href="/faculty">
-                    <h1>Faculty Page</h1>
                 </a>
             </nav>
             <Footer />
