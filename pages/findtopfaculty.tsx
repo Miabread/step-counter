@@ -5,38 +5,44 @@ import { equal } from 'node:assert';
 import React from 'react';
 import { usePrisma } from '../lib/prisma';
 
+//this is for when you want to change the week you are on
+const beginDay = 12; //pass in the day that you started
+const beginYear = 2021; //pass in the year you are on
+
 export const getStaticProps = async () => {
     // Prisma can't `distinct` and `groupBy` at the same time so we do it manually
     const query = await usePrisma((prisma) =>
+        //Where I start to give all the perameters for the code
         prisma.entry.groupBy({
             by: ['name', 'year'],
             sum: {
                 steps: true,
             },
             where: {
-                year: 0,
-                verified: true,
-                // name: 'emillyfaria',
+                year: 0, //This is searching for only faculty
+                verified: true, //only if they are verified
                 sumbitDate: {
-                    gte: new Date(2021, 2, 18, 20, 0, 0),
-                    lte: new Date(2021, 2, 26, 20, 0, 0),
+                    //parameter for the submit date
+                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0), //too change year or day change the created objects named beginYear/beginDay
+                    lte: new Date(beginYear, 2, beginDay + 7, 20, 0, 0),
                 },
                 date: {
-                    gte: new Date(2021, 2, 18, 20, 0, 0),
-                    lte: new Date(2021, 2, 26, 20, 0, 0),
+                    //parameter for the date the steps want to be counted
+                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0),
+                    lte: new Date(beginYear, 2, beginDay + 7, 20, 0, 0),
                 },
             },
         }),
     );
 
-    query.sort((a, b) => b.sum.steps - a.sum.steps);
-    query.length = 10;
+    query.sort((a, b) => b.sum.steps - a.sum.steps); //This is how we get them in order of greatest to lowest
+    query.length = 10; //top 10 results
 
     return {
         props: {
-            data: query,
+            data: query, //returns our query
         },
-        revalidate: 60,
+        revalidate: 60, //checks the data every 60 seconds
     };
 };
 
@@ -45,6 +51,7 @@ export default function FindTop({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <ul>
+            {/* this is what displays the data on the webpage */}
             <li>{JSON.stringify(data)}</li>
         </ul>
     );
