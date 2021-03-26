@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
+import { equal } from 'node:assert';
 // import { stringify } from 'node:querystring';
 import React from 'react';
 import { usePrisma } from '../lib/prisma';
@@ -13,14 +14,16 @@ export const getStaticProps = async () => {
                 steps: true,
             },
             where: {
-                year: 0,
+                year: { not: 0 },
+                verified: true,
+                // name: 'emillyfaria',
                 sumbitDate: {
-                    gte: new Date(2021, 2, 12),
-                    lte: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 18, 20, 0, 0),
+                    lte: new Date(2021, 2, 26, 20, 0, 0),
                 },
                 date: {
-                    gte: new Date(2021, 2, 12),
-                    lte: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 18, 20, 0, 0),
+                    lte: new Date(2021, 2, 26, 20, 0, 0),
                 },
             },
         }),
@@ -37,7 +40,7 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function FindTopFaculty({
+export default function FindTop({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (

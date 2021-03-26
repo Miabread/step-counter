@@ -14,15 +14,16 @@ export const getStaticProps = async () => {
                 steps: true,
             },
             where: {
-                year: { not: 0 },
+                year: 0,
+                verified: true,
                 // name: 'emillyfaria',
                 sumbitDate: {
-                    gte: new Date(2021, 2, 12),
-                    lte: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 18, 20, 0, 0),
+                    lte: new Date(2021, 2, 26, 20, 0, 0),
                 },
                 date: {
-                    gte: new Date(2021, 2, 12),
-                    lte: new Date(2021, 2, 18),
+                    gte: new Date(2021, 2, 18, 20, 0, 0),
+                    lte: new Date(2021, 2, 26, 20, 0, 0),
                 },
             },
         }),
