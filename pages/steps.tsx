@@ -21,7 +21,7 @@ import { usePrisma } from '../lib/prisma';
 //     };
 // };
 
-export default function New() {
+export default function Steps() {
     const [selection, setSelection] = useState<Record<string, boolean>>({});
 
     return (
