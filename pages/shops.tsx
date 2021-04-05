@@ -29,7 +29,9 @@ export const getStaticProps = async () => {
 export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [selection, setSelection] = useState<Record<string, boolean>>({});
+    const [selection, setSelection] = useState(
+        Object.fromEntries(years.map((it) => [it, true])),
+    );
 
     const steps = data
         // Keep only years that are selected
