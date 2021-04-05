@@ -5,7 +5,8 @@ export function Footer() {
         <footer>
             <hr />
             Programmers: James Clark, Wyatt Allaby, Tye Oulette &#8226; Logo
-            Designer: Mylena Bovo{' '}
+            Designer: Mylena Bovo &#8226;{' '}
+            <a href="https://discord.gg/5pJJY2bTZ8">Discord</a> &#8226;{' '}
             <a href="https://github.com/jamesBeeProg/step-counter">Source</a>
             <style jsx>{`
                 footer {
