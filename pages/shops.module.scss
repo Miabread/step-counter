@@ -1,0 +1,71 @@
+.grid-container {
+    display: grid;
+    grid-template:
+        'top top' 0.3fr
+        'side main' 1.7fr /
+        0.4fr 1.6fr;
+
+    height: 100vh;
+    width: 100vw;
+
+    @media only screen and (max-width: 600px) {
+        display: block; // Change to a "burger" layout
+    }
+}
+
+.top {
+    grid-area: top;
+    background-color: #edbd3e;
+}
+
+.sidebar {
+    grid-area: side;
+    background-color: #495e88;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.main {
+    grid-area: main;
+    background-color: #cfd6df;
+    overflow-y: scroll;
+
+    @media only screen and (max-width: 600px) {
+        height: auto; // Fill the rest of the screen
+    }
+}
+
+.table {
+    display: grid;
+    // Minmax is used to shrink columns when no space
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+
+    div {
+        padding: 2em;
+
+        // Select every other row
+        @for $i from 1 through 3 {
+            &:nth-child(6n + #{$i}) {
+                background-color: #a0aec1;
+            }
+        }
+    }
+}
+
+.index {
+    text-align: right;
+    white-space: nowrap; // Keeps ::after on same line
+
+    &::after {
+        content: ' |';
+        color: #495e88;
+    }
+}
+
+.content {
+    &::after {
+        content: ' Steps';
+        color: #495e88;
+    }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { shops, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
 import { createStyle } from '../lib/css';
-import css from './shops.module.css';
+import css from './shops.module.scss';
 import { InferGetStaticPropsType } from 'next';
 
 const style = createStyle(css);
@@ -56,8 +56,9 @@ export default function Shops({
 
     const stepsDisplay = steps.map(([shop, steps], key) => (
         <React.Fragment key={key}>
-            <dt>{shop}</dt>
-            <dd>{steps}</dd>
+            <div className={style('index')}>{key + 1}</div>
+            <div>{shop}</div>
+            <div className={style('content')}>{steps}</div>
         </React.Fragment>
     ));
 
@@ -81,9 +82,11 @@ export default function Shops({
 
     return (
         <div className={style('grid-container')}>
-            <div className={style('top')}></div>
+            <div className={style('top')}>Header</div>
             <aside className={style('sidebar')}>{checkboxes}</aside>
-            <dl className={style('main')}>{stepsDisplay}</dl>
+            <div className={style('main')}>
+                <div className={style('table')}>{stepsDisplay}</div>
+            </div>
         </div>
     );
 }
