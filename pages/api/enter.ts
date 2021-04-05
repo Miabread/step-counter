@@ -26,11 +26,15 @@ export default handleErrors(async (req, res) => {
     );
 
     const email = emailRegex.exec(req.body.email);
+    const date = new Date(req.body.date);
+
+    // Temporary fix for issue #3
+    if (date.getFullYear() === 21) date.setFullYear(2021);
 
     const data = {
         name: email?.groups?.name,
         proofUrl: req.body.proofUrl,
-        date: new Date(req.body.date),
+        date,
         steps: parseInt(req.body.steps, 10),
         // `or` is used to also catch empty strings
         year: parseInt(email?.groups?.year || '0', 10),
