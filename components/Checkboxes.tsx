@@ -24,16 +24,16 @@ export interface Props {
 
 export const Checkboxes = ({ input, checked, setChecked }: Props) => (
     <>
-        {input.map((year, key) => (
+        {input.map((it, key) => (
             <div key={key}>
                 <input
                     type="checkbox"
-                    id={String(year)}
-                    name={String(year)}
-                    checked={checked[year]}
-                    onChange={(event) => setChecked(year, event.target.checked)}
+                    id={it}
+                    name={it}
+                    checked={checked[it]}
+                    onChange={(event) => setChecked(it, event.target.checked)}
                 />
-                <label htmlFor={String(year)}>{year}</label>
+                <label htmlFor={it}>{it}</label>
             </div>
         ))}
     </>
