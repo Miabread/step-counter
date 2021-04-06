@@ -1,9 +1,9 @@
 # Step Counter
-# [Website](https://step-counter.vercel.app/)
+> [Website](https://step-counter.vercel.app/) - [Discord](https://discord.gg/5pJJY2bTZ8) - [GitHub](https://github.com/jamesBeeProg/step-counter)
 
 ## Development
 
-Make sure you have a `.env` file with `DATABASE_URL` for Postgres.
+Make sure you have a `.env` file with the correct contents. Check [example.env](example.env) for more information.
 
 Run the following commands before anything else:
 ```bash
