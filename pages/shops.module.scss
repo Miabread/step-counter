@@ -1,7 +1,7 @@
 .grid-container {
     display: grid;
     grid-template:
-        'top top' 0.3fr
+        'top top' minmax(0, 0.3fr)
         'side main' 1.7fr /
         0.4fr 1.6fr;
 
@@ -21,6 +21,13 @@
 
     box-shadow: 0 0 10px;
     z-index: 2;
+
+    display: flex;
+    justify-content: center;
+
+    img {
+        max-height: 100%;
+    }
 }
 
 .sidebar {
