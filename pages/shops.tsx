@@ -1,10 +1,11 @@
-import React, { ChangeEvent, Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { shops, stringYears, times, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
 import { createStyle } from '../lib/css';
 import css from './shops.module.scss';
 import { InferGetStaticPropsType } from 'next';
 import { Checkboxes, useCheckbox } from '../components/Checkboxes';
+import { Radios } from '../components/Radios';
 
 const style = createStyle(css);
 
@@ -27,13 +28,11 @@ export const getStaticProps = async () => {
     };
 };
 
-type Index<T extends readonly any[]> = T[Exclude<keyof T, keyof any[]>];
-
 export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [yearFilter, setYearFilter] = useCheckbox(stringYears);
-    const [timeFilter, setTimeFilter] = useState<Index<typeof times>>(times[0]);
+    const [timeFilter, setTimeFilter] = useState<string>(times[0]);
 
     const steps = data
         // Keep only years that are selected
@@ -66,30 +65,21 @@ export default function Shops({
         </Fragment>
     ));
 
-    const radios = times.map((time, key) => (
-        <div key={key}>
-            <input
-                type="radio"
-                id={time}
-                name={time}
-                checked={timeFilter === time}
-                onChange={() => setTimeFilter(time)}
-            />
-            <label htmlFor={time}>{time}</label>
-        </div>
-    ));
-
     return (
         <div className={style('grid-container')}>
             <div className={style('top')}>Header</div>
             <aside className={style('sidebar')}>
                 <h3>Time WIP</h3>
-                {radios}
+                <Radios
+                    options={times}
+                    selected={timeFilter}
+                    setSelected={setTimeFilter}
+                />
                 <h3>Year</h3>
                 <Checkboxes
-                    input={stringYears}
-                    checked={yearFilter}
-                    setChecked={setYearFilter}
+                    options={stringYears}
+                    selected={yearFilter}
+                    setSelected={setYearFilter}
                 />
             </aside>
             <div className={style('main')}>

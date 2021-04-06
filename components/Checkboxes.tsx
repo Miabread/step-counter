@@ -17,12 +17,16 @@ export const useCheckbox = (array: readonly string[]) => {
 type UseCheckbox = ReturnType<typeof useCheckbox>;
 
 export interface Props {
-    input: readonly string[];
-    checked: UseCheckbox[0];
-    setChecked: UseCheckbox[1];
+    options: readonly string[];
+    selected: UseCheckbox[0];
+    setSelected: UseCheckbox[1];
 }
 
-export const Checkboxes = ({ input, checked, setChecked }: Props) => (
+export const Checkboxes = ({
+    options: input,
+    selected,
+    setSelected,
+}: Props) => (
     <>
         {input.map((it, key) => (
             <div key={key}>
@@ -30,8 +34,8 @@ export const Checkboxes = ({ input, checked, setChecked }: Props) => (
                     type="checkbox"
                     id={it}
                     name={it}
-                    checked={checked[it]}
-                    onChange={(event) => setChecked(it, event.target.checked)}
+                    checked={selected[it]}
+                    onChange={(event) => setSelected(it, event.target.checked)}
                 />
                 <label htmlFor={it}>{it}</label>
             </div>
