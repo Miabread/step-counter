@@ -67,7 +67,13 @@ export default function Shops({
 
     return (
         <div className={style('grid-container')}>
-            <div className={style('top')}>Not Header</div>
+            <div className={style('top')}>
+                <img
+                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
+                    alt="Not Header"
+                    title="Not Header"
+                />
+            </div>
             <aside className={style('sidebar')}>
                 <section>
                     <h3>Time WIP</h3>
