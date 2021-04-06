@@ -24,4 +24,6 @@ export const shopToIndex = (shop: string) =>
 
 export const years = [2021, 2022, 2023, 2024] as const;
 
+export const stringYears = years.map(String);
+
 export const times = ['All Time', 'This Week', 'Last Week'] as const;

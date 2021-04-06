@@ -1,9 +1,10 @@
 import React, { ChangeEvent, Fragment, useState } from 'react';
-import { shops, times, years } from '../lib/data';
+import { shops, stringYears, times, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
 import { createStyle } from '../lib/css';
 import css from './shops.module.scss';
 import { InferGetStaticPropsType } from 'next';
+import { Checkboxes, useCheckbox } from '../components/Checkboxes';
 
 const style = createStyle(css);
 
@@ -27,26 +28,11 @@ export const getStaticProps = async () => {
 };
 
 type Index<T extends readonly any[]> = T[Exclude<keyof T, keyof any[]>];
-type Key = number | string | symbol;
-
-const useCheckbox = <T extends Key>(array: readonly T[]) => {
-    const [checkboxes, setCheckboxes] = useState(
-        Object.fromEntries(array.map((it) => [it, true])),
-    );
-
-    const setCheckbox = (key: T) => (event: ChangeEvent<HTMLInputElement>) =>
-        setCheckboxes({
-            ...checkboxes,
-            [key]: event.target.checked,
-        });
-
-    return [checkboxes, setCheckbox] as const;
-};
 
 export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [yearFilter, setYearFilter] = useCheckbox(years);
+    const [yearFilter, setYearFilter] = useCheckbox(stringYears);
     const [timeFilter, setTimeFilter] = useState<Index<typeof times>>(times[0]);
 
     const steps = data
@@ -80,19 +66,6 @@ export default function Shops({
         </Fragment>
     ));
 
-    const checkboxes = years.map((year, key) => (
-        <div key={key}>
-            <input
-                type="checkbox"
-                id={String(year)}
-                name={String(year)}
-                checked={yearFilter[year]}
-                onChange={setYearFilter(year)}
-            />
-            <label htmlFor={String(year)}>{year}</label>
-        </div>
-    ));
-
     const radios = times.map((time, key) => (
         <div key={key}>
             <input
@@ -113,7 +86,11 @@ export default function Shops({
                 <h3>Time WIP</h3>
                 {radios}
                 <h3>Year</h3>
-                {checkboxes}
+                <Checkboxes
+                    input={stringYears}
+                    checked={yearFilter}
+                    setChecked={setYearFilter}
+                />
             </aside>
             <div className={style('main')}>
                 <div className={style('table')}>{stepsDisplay}</div>
