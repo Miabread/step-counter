@@ -9,22 +9,54 @@
     width: 100vw;
 
     @media only screen and (max-width: 600px) {
-        display: block; // Change to a "burger" layout
+        display: flex; // Change to a "burger" layout
+        flex-flow: column;
+        height: auto; // Grow to fit content
     }
 }
 
 .top {
     grid-area: top;
     background-color: #edbd3e;
+
+    box-shadow: 0 0 10px;
+    z-index: 2;
 }
 
 .sidebar {
     grid-area: side;
     background-color: #495e88;
+
+    box-shadow: 0 0 10px;
+    z-index: 1;
+
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 600px) {
+        flex-flow: row; // Switch to side by side
+    }
+
+    div,
+    input,
+    label {
+        padding: 0.5em;
+    }
+
+    section {
+        margin: 1em;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h3 {
+        border-bottom: black solid thin; // Underline
+    }
 }
 
 .main {
@@ -33,7 +65,8 @@
     overflow-y: scroll;
 
     @media only screen and (max-width: 600px) {
-        height: auto; // Fill the rest of the screen
+        flex-grow: 1; // Fit rest of page
+        overflow-y: visible; // Use page wide scroll instead of element scroll
     }
 }
 
@@ -42,8 +75,10 @@
     // Minmax is used to shrink columns when no space
     grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
 
+    // Each cell
     div {
         padding: 2em;
+        box-shadow: inset 0 0 2px;
 
         // Select every other row
         @for $i from 1 through 3 {

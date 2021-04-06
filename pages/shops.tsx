@@ -67,20 +67,24 @@ export default function Shops({
 
     return (
         <div className={style('grid-container')}>
-            <div className={style('top')}>Header</div>
+            <div className={style('top')}>Not Header</div>
             <aside className={style('sidebar')}>
-                <h3>Time WIP</h3>
-                <Radios
-                    options={times}
-                    selected={timeFilter}
-                    setSelected={setTimeFilter}
-                />
-                <h3>Year</h3>
-                <Checkboxes
-                    options={stringYears}
-                    selected={yearFilter}
-                    setSelected={setYearFilter}
-                />
+                <section>
+                    <h3>Time WIP</h3>
+                    <Radios
+                        options={times}
+                        selected={timeFilter}
+                        setSelected={setTimeFilter}
+                    />
+                </section>
+                <section>
+                    <h3>Year</h3>
+                    <Checkboxes
+                        options={stringYears}
+                        selected={yearFilter}
+                        setSelected={setYearFilter}
+                    />
+                </section>
             </aside>
             <div className={style('main')}>
                 <div className={style('table')}>{stepsDisplay}</div>
