@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { shops, years } from '../lib/data';
+import React, { ChangeEvent, Fragment, useState } from 'react';
+import { shops, times, years } from '../lib/data';
 import { usePrisma } from '../lib/prisma';
 import { createStyle } from '../lib/css';
 import css from './shops.module.scss';
@@ -26,16 +26,32 @@ export const getStaticProps = async () => {
     };
 };
 
+type Index<T extends readonly any[]> = T[Exclude<keyof T, keyof any[]>];
+type Key = number | string | symbol;
+
+const useCheckbox = <T extends Key>(array: readonly T[]) => {
+    const [checkboxes, setCheckboxes] = useState(
+        Object.fromEntries(array.map((it) => [it, true])),
+    );
+
+    const setCheckbox = (key: T) => (event: ChangeEvent<HTMLInputElement>) =>
+        setCheckboxes({
+            ...checkboxes,
+            [key]: event.target.checked,
+        });
+
+    return [checkboxes, setCheckbox] as const;
+};
+
 export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [selection, setSelection] = useState(
-        Object.fromEntries(years.map((it) => [it, true])),
-    );
+    const [yearFilter, setYearFilter] = useCheckbox(years);
+    const [timeFilter, setTimeFilter] = useState<Index<typeof times>>(times[0]);
 
     const steps = data
         // Keep only years that are selected
-        .filter((_, i) => selection[years[i]])
+        .filter((_, i) => yearFilter[years[i]])
         // We don't care about year info past this point
         .flat()
         // Loop through all entries and count for each shop
@@ -57,35 +73,48 @@ export default function Shops({
     steps.sort((a, b) => b[1] - a[1]);
 
     const stepsDisplay = steps.map(([shop, steps], key) => (
-        <React.Fragment key={key}>
+        <Fragment key={key}>
             <div className={style('index')}>{key + 1}</div>
             <div>{shop}</div>
             <div className={style('content')}>{steps}</div>
-        </React.Fragment>
+        </Fragment>
     ));
 
-    const checkboxes = years.map((year, i) => (
-        <React.Fragment key={i}>
+    const checkboxes = years.map((year, key) => (
+        <div key={key}>
             <input
                 type="checkbox"
                 id={String(year)}
                 name={String(year)}
-                checked={selection[year]}
-                onChange={(event) =>
-                    setSelection({
-                        ...selection,
-                        [year]: event.target.checked,
-                    })
-                }
+                checked={yearFilter[year]}
+                onChange={setYearFilter(year)}
             />
             <label htmlFor={String(year)}>{year}</label>
-        </React.Fragment>
+        </div>
+    ));
+
+    const radios = times.map((time, key) => (
+        <div key={key}>
+            <input
+                type="radio"
+                id={time}
+                name={time}
+                checked={timeFilter === time}
+                onChange={() => setTimeFilter(time)}
+            />
+            <label htmlFor={time}>{time}</label>
+        </div>
     ));
 
     return (
         <div className={style('grid-container')}>
             <div className={style('top')}>Header</div>
-            <aside className={style('sidebar')}>{checkboxes}</aside>
+            <aside className={style('sidebar')}>
+                <h3>Time WIP</h3>
+                {radios}
+                <h3>Year</h3>
+                {checkboxes}
+            </aside>
             <div className={style('main')}>
                 <div className={style('table')}>{stepsDisplay}</div>
             </div>
