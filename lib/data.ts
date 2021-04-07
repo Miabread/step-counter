@@ -26,7 +26,18 @@ export const years = [2021, 2022, 2023, 2024] as const;
 
 export const stringYears = years.map(String);
 
-export const times = ['All Time', 'This Week', 'Last Week'] as const;
+export const views = {
+    shops: 'Shops',
+    participants: 'Shops by Participants',
+    students: 'Students',
+    faculty: 'Faculty',
+};
+
+export const times = {
+    all: 'All Time',
+    current: 'This Week',
+    previous: 'Last Week',
+};
 
 const hour = 1000 * 60 * 60;
 const week = hour * 24 * 7;

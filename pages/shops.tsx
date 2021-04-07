@@ -32,7 +32,7 @@ export default function Shops({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [yearFilter, setYearFilter] = useCheckbox(stringYears);
-    const [timeFilter, setTimeFilter] = useState<string>(times[0]);
+    const [timeFilter, setTimeFilter] = useState(times.all);
 
     const steps = data
         // Keep only years that are selected
@@ -78,7 +78,7 @@ export default function Shops({
                 <section>
                     <h3>Time WIP</h3>
                     <Radios
-                        options={times}
+                        options={Object.values(times)}
                         selected={timeFilter}
                         setSelected={setTimeFilter}
                     />
