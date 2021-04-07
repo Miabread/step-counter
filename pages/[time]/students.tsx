@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import {
     getRangeFromTime,
     minute,
-    shops,
     stringYears,
     times,
     years,
@@ -22,7 +21,7 @@ const style = createStyle(css);
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: Object.keys(times).map((it) => `/${it}/`),
+        paths: Object.keys(times).map((it) => `/${it}/students`),
         fallback: false,
     };
 };
@@ -56,7 +55,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
         Promise.all(
             years.map((year) =>
                 prisma.entry.groupBy({
-                    by: ['shop'],
+                    by: ['name', 'year'],
                     where: {
                         year,
                         shop: { not: 0 },
@@ -87,29 +86,22 @@ export default function Shops({
         // We don't care about year info past this point
         .flat();
 
-    const steps = filtered
-        // Loop through all entries and count for each shop
-        .reduce(
-            (acc, it) => {
-                // We own `acc`, mutation is fine
-                acc[it.shop] += it.sum.steps;
-                return acc;
-            },
-            // Make space for each shop with initial count 0
-            shops.map(() => 0),
-        )
-        // Assuming order is the same as `shops`, pair the count with their shop's name
-        .map((it, i) => [shops[i], it] as const)
-        // Ignore any shops with 0 steps
-        .filter((it) => it[1] > 0);
+    const students: Record<string, number> = {};
 
-    // Sort shops by decreasing steps
+    for (const entry of filtered) {
+        const student = entry.name + entry.year;
+        students[student] = (students[student] ?? 0) + entry.sum.steps;
+    }
+
+    const steps = Object.entries(students);
+
+    // Sort students by decreasing steps
     steps.sort((a, b) => b[1] - a[1]);
 
-    const stepsDisplay = steps.map(([shop, steps], key) => (
+    const stepsDisplay = steps.map(([name, steps], key) => (
         <Fragment key={key}>
             <div className={style('index')}>{key + 1}</div>
-            <div>{shop}</div>
+            <div>{name}</div>
             <div className={style('content')}>{steps}</div>
         </Fragment>
     ));
