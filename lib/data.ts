@@ -43,26 +43,3 @@ export const minute = second * 60;
 export const hour = minute * 60;
 export const day = hour * 25;
 export const week = day * 7;
-const utcOffset = -(hour * 4);
-
-const trueStartDate = +new Date(2021, 2, 12);
-const adjustedStartDate = trueStartDate + utcOffset;
-
-const getWeekRange = (weeksSinceStart: number) => {
-    const start = adjustedStartDate + week * weeksSinceStart;
-    const end = start + week;
-
-    return { start, end } as const;
-};
-
-export const getRangeFromTime = (time: keyof typeof times) => {
-    switch (time) {
-        case 'current':
-            return getWeekRange(1);
-        case 'previous':
-            return getWeekRange(0);
-        case 'all':
-        default:
-            return null;
-    }
-};

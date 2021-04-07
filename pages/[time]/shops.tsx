@@ -1,12 +1,5 @@
 import React, { Fragment } from 'react';
-import {
-    getRangeFromTime,
-    minute,
-    shops,
-    stringYears,
-    times,
-    years,
-} from '../../lib/data';
+import { minute, shops, stringYears, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle } from '../../lib/css';
 import css from './index.module.scss';
@@ -18,6 +11,7 @@ import {
 import { useCheckbox } from '../../components/Checkboxes';
 import { Total } from '../../components/Total';
 import { SideBar } from '../../components/SideBar';
+import { filterByTime } from '../../lib/time';
 
 const style = createStyle(css);
 
@@ -28,30 +22,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-const filterByTime = (time: keyof typeof times) => {
-    const timeRange = getRangeFromTime(time);
-
-    // If 'all' then don't add a filter
-    if (timeRange == null) return {};
-
-    const gte = new Date(timeRange.start);
-    const lte = new Date(timeRange.end);
-
-    return {
-        sumbitDate: {
-            gte,
-            lte,
-        },
-        date: {
-            gte,
-            lte,
-        },
-    };
-};
-
 export const getStaticProps = async (context: GetStaticPropsContext) => {
     const time = context.params?.time as keyof typeof times;
-    const timeFilter = filterByTime(time);
 
     const data = await usePrisma((prisma) =>
         Promise.all(
@@ -62,7 +34,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
                         year,
                         shop: { not: 0 },
                         verified: true,
-                        ...timeFilter,
+                        ...filterByTime(time),
                     },
                     sum: { steps: true },
                 }),
