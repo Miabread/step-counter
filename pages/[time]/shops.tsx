@@ -15,9 +15,9 @@ import {
     GetStaticPropsContext,
     InferGetStaticPropsType,
 } from 'next';
-import { Checkboxes, useCheckbox } from '../../components/Checkboxes';
-import { RadioLinks } from '../../components/RadioLinks';
+import { useCheckbox } from '../../components/Checkboxes';
 import { Total } from '../../components/Total';
+import { SideBar } from '../../components/SideBar';
 
 const style = createStyle(css);
 
@@ -115,11 +115,6 @@ export default function Shops({
         </Fragment>
     ));
 
-    const radioOptions = Object.entries(times).map(([link, label]) => ({
-        label,
-        link: `/${link}/`,
-    }));
-
     return (
         <div className={style('grid-container')}>
             <div className={style('top')}>
@@ -129,20 +124,12 @@ export default function Shops({
                     title="Not Header"
                 />
             </div>
-            <aside className={style('sidebar')}>
-                <section>
-                    <h3>Time</h3>
-                    <RadioLinks options={radioOptions} selected={times[time]} />
-                </section>
-                <section>
-                    <h3>Year</h3>
-                    <Checkboxes
-                        options={stringYears}
-                        selected={yearFilter}
-                        setSelected={setYearFilter}
-                    />
-                </section>
-            </aside>
+            <SideBar
+                currentView="shops"
+                currentTime={time}
+                yearFilter={yearFilter}
+                setYearFilter={setYearFilter}
+            />
             <div className={style('main')}>
                 <div className={style('table')}>
                     <Total input={filtered.map((it) => it.sum.steps)} />

@@ -14,7 +14,7 @@ export const useCheckbox = (array: readonly string[]) => {
     return [checked, setChecked] as const;
 };
 
-type UseCheckbox = ReturnType<typeof useCheckbox>;
+export type UseCheckbox = ReturnType<typeof useCheckbox>;
 
 export interface Props {
     options: readonly string[];

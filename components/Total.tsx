@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyle } from '../lib/css';
-import css from '../pages/[time]/index.module.css';
+import css from '../pages/[time]/index.module.scss';
 
 const style = createStyle(css);
 

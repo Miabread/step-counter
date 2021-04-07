@@ -19,7 +19,8 @@ export const RadioLinks = ({ options: input, selected }: Props) => (
                     type="radio"
                     id={label}
                     name={label}
-                    defaultChecked={selected === label}
+                    checked={selected === label}
+                    readOnly
                 />
                 <label htmlFor={label}>
                     <Link href={link}>{label}</Link>
