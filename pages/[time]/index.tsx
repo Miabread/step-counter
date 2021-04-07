@@ -1,21 +1,67 @@
 import React, { Fragment, useState } from 'react';
-import { shops, stringYears, times, years } from '../lib/data';
-import { usePrisma } from '../lib/prisma';
-import { createStyle } from '../lib/css';
-import css from './shops.module.scss';
-import { InferGetStaticPropsType } from 'next';
-import { Checkboxes, useCheckbox } from '../components/Checkboxes';
-import { Radios } from '../components/Radios';
+import {
+    getRangeFromTime,
+    minute,
+    shops,
+    stringYears,
+    times,
+    years,
+} from '../../lib/data';
+import { usePrisma } from '../../lib/prisma';
+import { createStyle } from '../../lib/css';
+import css from './index.module.scss';
+import {
+    GetStaticPaths,
+    GetStaticPropsContext,
+    InferGetStaticPropsType,
+} from 'next';
+import { Checkboxes, useCheckbox } from '../../components/Checkboxes';
+import { Radios } from '../../components/Radios';
 
 const style = createStyle(css);
 
-export const getStaticProps = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
+        paths: Object.keys(times).map((it) => `/${it}/`),
+        fallback: false,
+    };
+};
+
+const filterByTime = (time: keyof typeof times) => {
+    const timeRange = getRangeFromTime(time);
+
+    // If 'all' then don't add a filter
+    if (timeRange == null) return {};
+
+    const gte = new Date(timeRange.start);
+    const lte = new Date(timeRange.end);
+
+    return {
+        sumbitDate: {
+            gte,
+            lte,
+        },
+        date: {
+            gte,
+            lte,
+        },
+    };
+};
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+    const timeFilter = filterByTime(context.params?.time as keyof typeof times);
+
     const data = await usePrisma((prisma) =>
         Promise.all(
             years.map((year) =>
                 prisma.entry.groupBy({
                     by: ['shop'],
-                    where: { year, shop: { not: 0 }, verified: true },
+                    where: {
+                        year,
+                        shop: { not: 0 },
+                        verified: true,
+                        ...timeFilter,
+                    },
                     sum: { steps: true },
                 }),
             ),
@@ -24,7 +70,7 @@ export const getStaticProps = async () => {
 
     return {
         props: { data },
-        revalidate: 60,
+        revalidate: minute,
     };
 };
 

@@ -39,16 +39,31 @@ export const times = {
     previous: 'Last Week',
 };
 
-const hour = 1000 * 60 * 60;
-const week = hour * 24 * 7;
+export const second = 1000;
+export const minute = second * 60;
+export const hour = minute * 60;
+export const day = hour * 25;
+export const week = day * 7;
 const utcOffset = -(hour * 4);
 
 const trueStartDate = +new Date(2021, 2, 12);
 const adjustedStartDate = trueStartDate + utcOffset;
 
-export const getWeekRange = (weeksSinceStart: number) => {
+const getWeekRange = (weeksSinceStart: number) => {
     const start = adjustedStartDate + week * weeksSinceStart;
     const end = start + week;
 
     return { start, end } as const;
+};
+
+export const getRangeFromTime = (time: keyof typeof times) => {
+    switch (time) {
+        case 'current':
+            return getWeekRange(1);
+        case 'previous':
+            return getWeekRange(0);
+        case 'all':
+        default:
+            return null;
+    }
 };
