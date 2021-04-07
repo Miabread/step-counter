@@ -13,21 +13,23 @@ export const getStaticProps = async () => {
     // Prisma can't `distinct` and `groupBy` at the same time so we do it manually
     const query = await usePrisma((prisma) =>
         //Where I start to give all the perameters for the code
-        prisma.entry.groupBy({
-            by: ['name', 'year'],
-            sum: {
+        prisma.entry.findMany({
+            select: {
+                name: true,
                 steps: true,
+                date: true,
+                sumbitDate: true,
             },
             where: {
-                year: 0, //0 is searching for only faculty, change this to be {not: 0} when looking for students
-                verified: true, //only if they are verified
+                year: 0, //change this to be {not: 0} when looking for students
+                name: 'mnicalek',
+                verified: true,
                 sumbitDate: {
-                    //parameter for the submit date
-                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0), //too change year or day change the created objects named beginYear/beginDay
+                    //look for the beginYear to change the date
+                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0),
                     lte: new Date(beginYear, 2, beginDay + 6, 20, 0, 0),
                 },
                 date: {
-                    //parameter for the date the steps want to be counted
                     gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0),
                     lte: new Date(beginYear, 2, beginDay + 6, 20, 0, 0),
                 },
@@ -35,24 +37,19 @@ export const getStaticProps = async () => {
         }),
     );
 
-    query.sort((a, b) => b.sum.steps - a.sum.steps); //This is how we get them in order of greatest to lowest
-    query.length = 10; //top 10 results
+    // query.sort((a, b) => b.sum.steps - a.sum.steps);
+    // query.length = 10;
 
     return {
         props: {
-            data: query, //returns our query
+            data: JSON.stringify(query, null, 2),
         },
-        revalidate: 60, //checks the data every 60 seconds
+        revalidate: 60,
     };
 };
 
 export default function FindTop({
     data,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return (
-        <ul>
-            {/* this is what displays the data on the webpage */}
-            <li>{JSON.stringify(data)}</li>
-        </ul>
-    );
+    return <pre>{data}</pre>;
 }
