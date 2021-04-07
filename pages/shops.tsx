@@ -34,11 +34,13 @@ export default function Shops({
     const [yearFilter, setYearFilter] = useCheckbox(stringYears);
     const [timeFilter, setTimeFilter] = useState(times.all);
 
-    const steps = data
+    const filtered = data
         // Keep only years that are selected
         .filter((_, i) => yearFilter[years[i]])
         // We don't care about year info past this point
-        .flat()
+        .flat();
+
+    const steps = filtered
         // Loop through all entries and count for each shop
         .reduce(
             (acc, it) => {
@@ -64,6 +66,17 @@ export default function Shops({
             <div className={style('content')}>{steps}</div>
         </Fragment>
     ));
+
+    // For total just sum all of them
+    const total = filtered.reduce((acc, it) => acc + it.sum.steps, 0);
+
+    const totalDisplay = (
+        <>
+            <div className={style('index')}>+</div>
+            <div>Total</div>
+            <div className={style('content')}>{total}</div>{' '}
+        </>
+    );
 
     return (
         <div className={style('grid-container')}>
@@ -93,7 +106,10 @@ export default function Shops({
                 </section>
             </aside>
             <div className={style('main')}>
-                <div className={style('table')}>{stepsDisplay}</div>
+                <div className={style('table')}>
+                    {totalDisplay}
+                    {stepsDisplay}
+                </div>
             </div>
         </div>
     );
