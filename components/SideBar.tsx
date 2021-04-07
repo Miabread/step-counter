@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyle } from '../lib/css';
+import { createStyle } from '../lib/misc';
 import { stringYears, times, views } from '../lib/data';
 import css from '../pages/[time]/index.module.scss';
 import { Checkboxes, UseCheckbox } from './Checkboxes';

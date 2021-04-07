@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyle } from '../lib/css';
+import { createStyle } from '../lib/misc';
 import css from '../pages/[time]/index.module.scss';
 
 const style = createStyle(css);

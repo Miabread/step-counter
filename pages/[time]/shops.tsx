@@ -1,13 +1,9 @@
 import React, { Fragment } from 'react';
 import { minute, shops, stringYears, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
-import { createStyle } from '../../lib/css';
+import { createStyle, getStaticPathsForView } from '../../lib/misc';
 import css from './index.module.scss';
-import {
-    GetStaticPaths,
-    GetStaticPropsContext,
-    InferGetStaticPropsType,
-} from 'next';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useCheckbox } from '../../components/Checkboxes';
 import { Total } from '../../components/Total';
 import { SideBar } from '../../components/SideBar';
@@ -15,12 +11,7 @@ import { filterByTime } from '../../lib/time';
 
 const style = createStyle(css);
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    return {
-        paths: Object.keys(times).map((it) => `/${it}/shops`),
-        fallback: false,
-    };
-};
+export const getStaticPaths = getStaticPathsForView('shops');
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
     const time = context.params?.time as keyof typeof times;
