@@ -2,6 +2,7 @@ import { usePrisma } from '../lib/prisma';
 import Head from 'next/head';
 import React from 'react';
 import { InferGetStaticPropsType } from 'next';
+import { minute } from '../lib/data';
 
 export const getStaticProps = async () => {
     const query = await usePrisma((prisma) =>
@@ -17,7 +18,7 @@ export const getStaticProps = async () => {
 
     return {
         props: { steps: query.sum.steps },
-        revalidate: 60,
+        revalidate: minute,
     };
 };
 
@@ -43,7 +44,7 @@ export default function Index({
                 </div>
             </div>
             <nav>
-                <a href="/shops">
+                <a href="/all">
                     <h1>View # of Steps by Shop</h1>
                 </a>
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">

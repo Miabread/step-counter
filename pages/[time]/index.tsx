@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import {
     getRangeFromTime,
     minute,
@@ -16,7 +16,7 @@ import {
     InferGetStaticPropsType,
 } from 'next';
 import { Checkboxes, useCheckbox } from '../../components/Checkboxes';
-import { Radios } from '../../components/Radios';
+import { RadioLinks } from '../../components/RadioLinks';
 
 const style = createStyle(css);
 
@@ -49,7 +49,8 @@ const filterByTime = (time: keyof typeof times) => {
 };
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
-    const timeFilter = filterByTime(context.params?.time as keyof typeof times);
+    const time = context.params?.time as keyof typeof times;
+    const timeFilter = filterByTime(time);
 
     const data = await usePrisma((prisma) =>
         Promise.all(
@@ -69,16 +70,16 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     );
 
     return {
-        props: { data },
+        props: { data, time },
         revalidate: minute,
     };
 };
 
 export default function Shops({
     data,
+    time,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [yearFilter, setYearFilter] = useCheckbox(stringYears);
-    const [timeFilter, setTimeFilter] = useState(times.all);
 
     const filtered = data
         // Keep only years that are selected
@@ -124,6 +125,11 @@ export default function Shops({
         </>
     );
 
+    const radioOptions = Object.entries(times).map(([link, label]) => ({
+        label,
+        link: `/${link}/`,
+    }));
+
     return (
         <div className={style('grid-container')}>
             <div className={style('top')}>
@@ -135,12 +141,8 @@ export default function Shops({
             </div>
             <aside className={style('sidebar')}>
                 <section>
-                    <h3>Time WIP</h3>
-                    <Radios
-                        options={Object.values(times)}
-                        selected={timeFilter}
-                        setSelected={setTimeFilter}
-                    />
+                    <h3>Time</h3>
+                    <RadioLinks options={radioOptions} selected={times[time]} />
                 </section>
                 <section>
                     <h3>Year</h3>
