@@ -26,6 +26,8 @@ export const years = [2021, 2022, 2023, 2024] as const;
 
 export const stringYears = years.map(String);
 
+export const maxEntriesDisplayed = 20;
+
 export const views = {
     shops: 'Shops',
     students: 'Students',

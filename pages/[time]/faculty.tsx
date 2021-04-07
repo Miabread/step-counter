@@ -1,5 +1,10 @@
 import React, { Fragment } from 'react';
-import { minute, stringYears, times } from '../../lib/data';
+import {
+    maxEntriesDisplayed,
+    minute,
+    stringYears,
+    times,
+} from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
 import css from './index.module.scss';
@@ -50,6 +55,9 @@ export default function Shops({
 
     // Sort students by decreasing steps
     steps.sort((a, b) => b[1] - a[1]);
+
+    // Limit the amount of entries displayed
+    steps.length = maxEntriesDisplayed;
 
     const stepsDisplay = steps.map(([name, steps], key) => (
         <Fragment key={key}>
