@@ -17,6 +17,7 @@ import {
 } from 'next';
 import { Checkboxes, useCheckbox } from '../../components/Checkboxes';
 import { RadioLinks } from '../../components/RadioLinks';
+import { Total } from '../../components/Total';
 
 const style = createStyle(css);
 
@@ -114,17 +115,6 @@ export default function Shops({
         </Fragment>
     ));
 
-    // For total just sum all of them
-    const total = filtered.reduce((acc, it) => acc + it.sum.steps, 0);
-
-    const totalDisplay = (
-        <>
-            <div className={style('index')}>+</div>
-            <div>Total</div>
-            <div className={style('content')}>{total}</div>{' '}
-        </>
-    );
-
     const radioOptions = Object.entries(times).map(([link, label]) => ({
         label,
         link: `/${link}/`,
@@ -155,7 +145,7 @@ export default function Shops({
             </aside>
             <div className={style('main')}>
                 <div className={style('table')}>
-                    {totalDisplay}
+                    <Total input={filtered.map((it) => it.sum.steps)} />
                     {stepsDisplay}
                 </div>
             </div>
