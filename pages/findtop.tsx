@@ -7,6 +7,7 @@ import { usePrisma } from '../lib/prisma';
 
 //this is for when you want to change the week you are on
 const beginDay = 26; //pass in the day that you started
+const beginMonth = 4; //pass in the month that you are currently in
 const beginYear = 2021; //pass in the year you are on
 
 export const getStaticProps = async () => {
@@ -23,13 +24,41 @@ export const getStaticProps = async () => {
                 verified: true, //only if they are verified
                 sumbitDate: {
                     //parameter for the submit date
-                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0), //too change year or day change the created objects named beginYear/beginDay
-                    lte: new Date(beginYear, 2, beginDay + 6, 20, 0, 0),
+                    gte: new Date(
+                        beginYear,
+                        beginMonth - 1,
+                        beginDay - 1,
+                        20,
+                        0,
+                        0,
+                    ), //too change year or day change the created objects named beginYear/beginDay
+                    lte: new Date(
+                        beginYear,
+                        beginMonth - 1,
+                        beginDay + 6,
+                        20,
+                        0,
+                        0,
+                    ),
                 },
                 date: {
                     //parameter for the date the steps want to be counted
-                    gte: new Date(beginYear, 2, beginDay - 1, 20, 0, 0),
-                    lte: new Date(beginYear, 2, beginDay + 6, 20, 0, 0),
+                    gte: new Date(
+                        beginYear,
+                        beginMonth - 1,
+                        beginDay - 1,
+                        20,
+                        0,
+                        0,
+                    ),
+                    lte: new Date(
+                        beginYear,
+                        beginMonth - 1,
+                        beginDay + 6,
+                        20,
+                        0,
+                        0,
+                    ),
                 },
             },
         }),
