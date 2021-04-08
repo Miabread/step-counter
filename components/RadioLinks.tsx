@@ -14,18 +14,18 @@ interface Props {
 export const RadioLinks = ({ options: input, selected }: Props) => (
     <>
         {input.map(({ label, link }, key) => (
-            <div key={key}>
-                <input
-                    type="radio"
-                    id={label}
-                    name={label}
-                    checked={selected === label}
-                    readOnly
-                />
-                <label htmlFor={label}>
-                    <Link href={link}>{label}</Link>
-                </label>
-            </div>
+            <Link href={link} key={key}>
+                <div>
+                    <input
+                        type="radio"
+                        id={label}
+                        name={label}
+                        checked={selected === label}
+                        readOnly
+                    />
+                    <label htmlFor={label}>{label}</label>
+                </div>
+            </Link>
         ))}
     </>
 );
