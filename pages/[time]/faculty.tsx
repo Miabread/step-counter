@@ -9,7 +9,6 @@ import { SideBar } from '../../components/SideBar';
 import { filterByTime } from '../../lib/time';
 import { Steps } from '../../components/Steps';
 import { DataHeader } from '../../components/DataHeader';
-import { yearFilterContext } from '../_app';
 import Head from 'next/head';
 
 const style = createStyle(css);
@@ -41,8 +40,6 @@ export default function Shops({
     data,
     time,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [yearFilter, setYearFilter] = useContext(yearFilterContext);
-
     const faculty: Record<string, number> = {};
 
     for (const entry of data) {
@@ -63,12 +60,7 @@ export default function Shops({
                 <title>Top Faculty of {times[time]} | Step Into Action</title>
             </Head>
             <DataHeader />
-            <SideBar
-                currentView="faculty"
-                currentTime={time}
-                yearFilter={yearFilter}
-                setYearFilter={setYearFilter}
-            />
+            <SideBar currentView="faculty" currentTime={time} />
             <div className={style('main')}>
                 <div className={style('table')}>
                     <Total input={data.map((it) => it.sum.steps)} />
