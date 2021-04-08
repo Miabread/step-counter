@@ -29,12 +29,13 @@ export default function Index({
     return (
         <>
             <Head>
-                <title>Fitness Challenge</title>
+                <title>Step Into Action</title>
             </Head>
             <article>
                 <img
                     src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
-                    alt="Fitness Challenge"
+                    alt="Step Into Action"
+                    title="Step Into Action"
                 />
             </article>
 
@@ -47,12 +48,12 @@ export default function Index({
             <nav>
                 <Link href="/all/shops">
                     <a>
-                        <h1>View # of Steps by Shop</h1>
+                        <h1>Data Breakdown</h1>
                     </a>
                 </Link>
                 <Link href="https://forms.gle/YWFLzeHt1Qne4HEV6">
                     <a>
-                        <h1>Submit Your Steps</h1>
+                        <h1>Submit Steps</h1>
                     </a>
                 </Link>
             </nav>

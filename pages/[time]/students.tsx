@@ -10,6 +10,7 @@ import { filterByTime } from '../../lib/time';
 import { Steps } from '../../components/Steps';
 import { DataHeader } from '../../components/DataHeader';
 import { yearFilterContext } from '../_app';
+import Head from 'next/head';
 
 const style = createStyle(css);
 
@@ -70,6 +71,9 @@ export default function Shops({
 
     return (
         <div className={style('grid-container')}>
+            <Head>
+                <title>Top Students of {times[time]} | Step Into Action</title>
+            </Head>
             <DataHeader />
             <SideBar
                 currentView="students"
