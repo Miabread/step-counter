@@ -14,6 +14,7 @@ import { useCheckbox } from '../../components/Checkboxes';
 import { Total } from '../../components/Total';
 import { SideBar } from '../../components/SideBar';
 import { filterByTime } from '../../lib/time';
+import { Steps } from '../../components/Steps';
 
 const style = createStyle(css);
 
@@ -72,14 +73,6 @@ export default function Shops({
     // Limit the amount of entries displayed
     steps.length = maxEntriesDisplayed;
 
-    const stepsDisplay = steps.map(([name, steps], key) => (
-        <Fragment key={key}>
-            <div className={style('index')}>{key + 1}</div>
-            <div>{name}</div>
-            <div className={style('content')}>{steps}</div>
-        </Fragment>
-    ));
-
     return (
         <div className={style('grid-container')}>
             <div className={style('top')}>
@@ -98,7 +91,7 @@ export default function Shops({
             <div className={style('main')}>
                 <div className={style('table')}>
                     <Total input={filtered.map((it) => it.sum.steps)} />
-                    {stepsDisplay}
+                    <Steps input={steps} />
                 </div>
             </div>
         </div>
