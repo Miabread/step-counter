@@ -1,6 +1,6 @@
 import { hour, times, week } from './data';
 
-const utcOffset = -(hour * 4);
+const utcOffset = -(hour * 5);
 
 const trueStartDate = +new Date(2021, 2, 12);
 const adjustedStartDate = trueStartDate + utcOffset;
@@ -13,11 +13,13 @@ const getWeekRange = (weeksSinceStart: number) => {
 };
 
 const getRangeFromTime = (time: keyof typeof times) => {
+    const weeksSinceStart = Math.floor((Date.now() - adjustedStartDate) / week);
+
     switch (time) {
         case 'current':
-            return getWeekRange(1);
+            return getWeekRange(weeksSinceStart);
         case 'previous':
-            return getWeekRange(0);
+            return getWeekRange(weeksSinceStart - 1);
         case 'all':
         default:
             return null;
