@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { minute, shops, stringYears, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
@@ -9,6 +9,7 @@ import { Total } from '../../components/Total';
 import { SideBar } from '../../components/SideBar';
 import { filterByTime } from '../../lib/time';
 import { Steps } from '../../components/Steps';
+import { DataHeader } from '../../components/DataHeader';
 
 const style = createStyle(css);
 
@@ -73,13 +74,7 @@ export default function Shops({
 
     return (
         <div className={style('grid-container')}>
-            <div className={style('top')}>
-                <img
-                    src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
-                    alt="Not Header"
-                    title="Not Header"
-                />
-            </div>
+            <DataHeader />
             <SideBar
                 currentView="shops"
                 currentTime={time}
