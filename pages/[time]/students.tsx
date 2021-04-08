@@ -1,21 +1,15 @@
-import React from 'react';
-import {
-    maxEntriesDisplayed,
-    minute,
-    stringYears,
-    times,
-    years,
-} from '../../lib/data';
+import React, { useContext } from 'react';
+import { maxEntriesDisplayed, minute, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
 import css from './index.module.scss';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import { useCheckbox } from '../../components/Checkboxes';
 import { Total } from '../../components/Total';
 import { SideBar } from '../../components/SideBar';
 import { filterByTime } from '../../lib/time';
 import { Steps } from '../../components/Steps';
 import { DataHeader } from '../../components/DataHeader';
+import { yearFilterContext } from '../_app';
 
 const style = createStyle(css);
 
@@ -51,7 +45,7 @@ export default function Shops({
     data,
     time,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [yearFilter, setYearFilter] = useCheckbox(stringYears);
+    const [yearFilter, setYearFilter] = useContext(yearFilterContext);
 
     const filtered = data
         // Keep only years that are selected
