@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { minute } from '../lib/data';
+import Link from 'next/link';
 
 export const getStaticProps = async () => {
     const query = await usePrisma((prisma) =>
@@ -44,19 +45,25 @@ export default function Index({
                 </div>
             </div>
             <nav>
-                <a href="/all/shops">
-                    <h1>View # of Steps by Shop</h1>
-                </a>
-                <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
-                    <h1>Submit Your Steps</h1>
-                </a>
+                <Link href="/all/shops">
+                    <a>
+                        <h1>View # of Steps by Shop</h1>
+                    </a>
+                </Link>
+                <Link href="https://forms.gle/YWFLzeHt1Qne4HEV6">
+                    <a>
+                        <h1>Submit Your Steps</h1>
+                    </a>
+                </Link>
             </nav>
-            <a href="http://assabet.org/cms/one.aspx?pageId=36650809">
-                <img
-                    src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
-                    alt="Assabet Logo"
-                />
-            </a>
+            <Link href="http://assabet.org/cms/one.aspx?pageId=36650809">
+                <a>
+                    <img
+                        src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
+                        alt="Assabet Logo"
+                    />
+                </a>
+            </Link>
             <style jsx>{`
                 article img {
                     /*Code for the step logo*/
