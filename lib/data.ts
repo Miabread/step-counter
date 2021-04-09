@@ -32,6 +32,7 @@ export const views = {
     shops: 'Shops',
     students: 'Students',
     faculty: 'Faculty',
+    users: 'Users',
 };
 
 export const times = {

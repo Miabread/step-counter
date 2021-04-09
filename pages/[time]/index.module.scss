@@ -8,11 +8,17 @@
     height: 100vh;
     width: 100vw;
 
+    --content-label: ' Steps';
+
     @media only screen and (max-width: 600px) {
         display: flex; // Change to a "burger" layout
         flex-flow: column;
         height: auto; // Grow to fit content
     }
+}
+
+.for-users {
+    --content-label: ' Users';
 }
 
 .top {
@@ -112,7 +118,7 @@
 
 .content {
     &::after {
-        content: ' Steps';
+        content: var(--content-label);
         color: #495e88;
     }
 }
