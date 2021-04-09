@@ -42,6 +42,11 @@
 
     img {
         max-height: 100%;
+        max-width: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        height: 15vh;
     }
 }
 
