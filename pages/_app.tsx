@@ -1,23 +1,43 @@
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import React from 'react';
+import { useCheckbox, yearFilterContext } from '../components/YearFilter';
+import { stringYears } from '../lib/data';
+import './_app.css';
 
 export default function App({ Component, pageProps }: AppProps) {
+    const yearFilter = useCheckbox(stringYears);
+
     return (
-        <>
+        <yearFilterContext.Provider value={yearFilter}>
+            <Head>
+                <link
+                    rel="apple-touch-icon"
+                    sizes="180x180"
+                    href="/apple-touch-icon.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="32x32"
+                    href="/favicon-32x32.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="16x16"
+                    href="/favicon-16x16.png"
+                />
+                <link rel="manifest" href="/site.webmanifest" />
+                <link
+                    rel="mask-icon"
+                    href="/safari-pinned-tab.svg"
+                    color="#5bbad5"
+                />
+                <meta name="msapplication-TileColor" content="#da532c" />
+                <meta name="theme-color" content="#ffffff" />
+            </Head>
             <Component {...pageProps} />
-            <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
-                html,
-                body {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                body {
-                    font-family: 'Open Sans', sans-serif;
-                }
-            `}</style>
-        </>
+        </yearFilterContext.Provider>
     );
 }

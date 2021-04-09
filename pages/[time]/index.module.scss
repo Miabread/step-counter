@@ -1,0 +1,134 @@
+.grid-container {
+    display: grid;
+    grid-template:
+        'top top' minmax(0, 0.3fr)
+        'side main' 1.7fr /
+        0.4fr 1.6fr;
+
+    height: 100vh;
+    width: 100vw;
+
+    --content-label: ' Steps';
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+        display: flex; // Change to a "burger" layout
+        flex-flow: column;
+        height: auto; // Grow to fit content
+    }
+}
+
+.for-users {
+    --content-label: ' Users';
+}
+
+.top {
+    grid-area: top;
+    background-color: #edbd3e;
+
+    box-shadow: 0 0 10px;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+
+    a {
+        text-align: center;
+    }
+
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        height: 15vh;
+    }
+}
+
+.sidebar {
+    grid-area: side;
+    background-color: #495e88;
+
+    box-shadow: 0 0 10px;
+    z-index: 1;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (max-width: 600px) {
+        flex-flow: row; // Switch to side by side
+    }
+
+    div,
+    input,
+    label {
+        padding: 0.5em;
+    }
+
+    section {
+        margin: 1em;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h3 {
+        border-bottom: black solid thin; // Underline
+    }
+}
+
+.main {
+    grid-area: main;
+    background-color: #cfd6df;
+    overflow-y: scroll;
+
+    @media only screen and (max-width: 600px) {
+        flex-grow: 1; // Fit rest of page
+        overflow-y: visible; // Use page wide scroll instead of element scroll
+    }
+}
+
+.table {
+    display: grid;
+    // Minmax is used to shrink columns when no space
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+
+    // Each cell
+    div {
+        padding: 2em;
+        box-shadow: inset 0 0 2px;
+
+        // Select every other row
+        @for $i from 1 through 3 {
+            &:nth-child(6n + #{$i}) {
+                background-color: #a0aec1;
+            }
+        }
+    }
+}
+
+.index {
+    text-align: right;
+    white-space: nowrap; // Keeps ::after on same line
+
+    &::after {
+        content: ' |';
+        color: #495e88;
+    }
+}
+
+.content {
+    &::after {
+        content: var(--content-label);
+        color: #495e88;
+    }
+}
