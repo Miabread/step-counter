@@ -46,7 +46,6 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
     for (const [i, yearEntries] of shopsQuery.entries()) {
         for (const { shop } of yearEntries) {
-            console.log({ i, shop, existing: data[i][shop] });
             data[i][shop][1] += 1;
         }
     }
@@ -101,8 +100,11 @@ export default function Users({
             <SideBar currentView="users" currentTime={time} />
             <div className={style('main')}>
                 <div className={style('table')}>
-                    <Total input={filtered.map((it) => it[1])} />
-                    <Total input={faculty} label="Faculty" />
+                    <Total input={faculty} label="Total Faculty" />
+                    <Total
+                        input={filtered.map((it) => it[1])}
+                        label="Total Students"
+                    />
                     <Steps input={users} />
                 </div>
             </div>
