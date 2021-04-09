@@ -102,7 +102,7 @@ export default function Users({
             <div className={style('main')}>
                 <div className={style('table')}>
                     <Total input={filtered.map((it) => it[1])} />
-                    <Total input={faculty} />
+                    <Total input={faculty} label="Faculty" />
                     <Steps input={users} />
                 </div>
             </div>
