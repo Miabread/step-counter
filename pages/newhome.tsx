@@ -31,13 +31,13 @@ export default function Index({
                 <title>Fitness Challenge</title>
             </Head>
             <nav className="top">
-                <a href="/shops">
+                <a href="/all/shops">
                     <h2>View # of Steps by Shop</h2>
                 </a>
                 <div className="topimg">
                     <img
                         src="https://i.ibb.co/g6WmH7B/Stepintoaction-3clr-1.png"
-                        alt="Fitness Challenge"
+                        alt="Logo"
                         width="50%"
                         height="auto"
                     />
@@ -53,77 +53,98 @@ export default function Index({
                 </div>
             </header>
             <section>
-                <header>Links</header>
-                <div>
-                    <h2>Assabet Valley</h2>
-                    <p>
-                        Here is our school&apos;s website. You can see various
-                        events here.
-                    </p>
+                <header className="links">Links</header>
+                <div className="linksdiv">
+                    <div className="sectiondiv">
+                        <h2>Assabet Valley</h2>
+                        <p>
+                            Here is our school&apos;s website. You can see
+                            various events here.
+                        </p>
 
-                    <img
-                        src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
-                        width="45%"
-                        height="auto"
-                    />
+                        <img
+                            src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
+                            width="45%"
+                            height="auto"
+                        />
 
-                    <a href="http://assabet.org/">Visit</a>
-                </div>
-                <div>
-                    <h2>Source Code</h2>
-                    <p>You can view our Source Code here with Git Hub.</p>
-                    <img
-                        src="https://i.ibb.co/V9LYHXn/githublogo.png"
-                        width="80%"
-                        height="auto"
-                    />
-                    <a href="https://github.com/jamesBeeProg/step-counter">
-                        View Source
-                    </a>
-                </div>
-                <div>
-                    <h2>Discord!</h2>
-                    <p>
-                        Join our discord to talk about the step challenge and
-                        ask questions.
-                    </p>
+                        <a href="http://assabet.org/">Visit</a>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Source Code</h2>
+                        <p>You can view our Source Code here with Git Hub.</p>
+                        <img
+                            src="https://i.ibb.co/V9LYHXn/githublogo.png"
+                            width="80%"
+                            height="auto"
+                        />
+                        <a href="https://github.com/jamesBeeProg/step-counter">
+                            View Source
+                        </a>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Discord!</h2>
+                        <p>
+                            Join our discord to talk about the step challenge
+                            and ask questions.
+                        </p>
 
-                    <img
-                        src="https://i.ibb.co/Rysy2b2/discordlogo.jpg"
-                        width="80%"
-                        height="auto"
-                    />
-                    <a href="https://discord.gg/KnUP59Gg">Join</a>
+                        <img
+                            src="https://i.ibb.co/Rysy2b2/discordlogo.jpg"
+                            width="80%"
+                            height="auto"
+                        />
+                        <a href="https://discord.gg/KnUP59Gg">Join</a>
+                    </div>
                 </div>
             </section>
             <section>
-                <header>Creators</header>
-                <div>
-                    <h2>James Clark</h2>
-                    <p>Programmer</p>
-                </div>
-                <div>
-                    <h2>Wyatt Allaby</h2>
-                    <p>Programmer</p>
-                </div>
-                <div>
-                    <h2>Eric Edwards</h2>
-                    <p>Data Analysis</p>
-                </div>
-                <div>
-                    <h2>Mylena Bovo</h2>
-                    <p>Logo Designer</p>
+                <header className="creators">Creators</header>
+                <div className="creatorsdiv">
+                    <div className="sectiondiv">
+                        <h2>James Clark</h2>
+                        <p>Programmer</p>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Wyatt Allaby</h2>
+                        <p>Programmer</p>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Eric Edwards</h2>
+                        <p>Data Analysis</p>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Mylena Bovo</h2>
+                        <p>Logo Designer</p>
+                    </div>
                 </div>
             </section>
-            <footer>
-                <hr />
-                Programmers: James Clark, Wyatt Allaby, Eric Edwards &#8226;
-                Logo Designer: Mylena Bovo
-            </footer>
+            <footer></footer>
             <style jsx>{`
-                header {
+                .links {
+                    font-size: 40px;
                     text-align: center;
                 }
+
+                .linksdiv {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .creators {
+                    font-size: 40px;
+                    text-align: center;
+                }
+
+                .creatorsdiv {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+
                 .top {
                     border: none;
                     background-color: #edbd3e;
@@ -133,9 +154,29 @@ export default function Index({
                     font-size: 20px;
                     height: 30vh;
                 }
+                @media only screen and (max-width: 600px) {
+                    .top {
+                        text-align: center;
+                        display: flex;
+                        justify-content: space-around;
+                        flex-direction: column;
+                        font-size: 10px;
+                        height: 40vh;
+                    }
+                    .topimg {
+                        order: -1;
+                    }
+                }
 
                 .topimg {
                     margin-right: 8%;
+                }
+
+                @media only screen and (max-width: 600px) {
+                    .topimg {
+                        margin: auto;
+                        margin-top: 5%;
+                    }
                 }
 
                 .main {
@@ -166,11 +207,22 @@ export default function Index({
                     justify-content: center;
                     align-items: center;
                 }
+                @media only screen and (max-width: 600px) {
+                    .total {
+                        height: 30vh;
+                    }
+                }
 
                 h1 {
                     padding: 0.5em;
                     background-color: white;
                     font-size: 40px;
+                }
+
+                @media only screen and (max-width: 600px) {
+                    h1 {
+                        text-align: center;
+                    }
                 }
 
                 section {
@@ -179,18 +231,13 @@ export default function Index({
 
                     background: #495e88;
                     color: black;
-
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
                 }
 
                 section {
                     margin-top: 5vh;
                 }
 
-                section div,
+                .sectiondiv,
                 aside {
                     height: 60%;
                     width: 100%;
@@ -200,6 +247,19 @@ export default function Index({
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                }
+                @media only screen and (max-width: 600px) {
+                    section div,
+                    aside {
+                        height: 60%;
+                        width: 100%;
+                        min-height: 50vh;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
                 }
 
                 aside {

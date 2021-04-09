@@ -6,8 +6,8 @@ import React from 'react';
 import { usePrisma } from '../lib/prisma';
 
 //this is for when you want to change the week you are on
-const beginDay = 26; //pass in the day that you started
-const beginMonth = 3; //pass in the month that you are currently in
+const beginDay = 2; //pass in the day that you started
+const beginMonth = 4; //pass in the month that you are currently in
 const beginYear = 2021; //pass in the year you are on
 
 export const getStaticProps = async () => {
@@ -20,7 +20,7 @@ export const getStaticProps = async () => {
                 steps: true,
             },
             where: {
-                year: 0, //0 is searching for only faculty, change this to be {not: 0} when looking for students
+                year: { not: 0 }, //0 is searching for only faculty, change this to be {not: 0} when looking for students
                 verified: true, //only if they are verified
                 sumbitDate: {
                     //parameter for the submit date
