@@ -15,7 +15,9 @@ export const Steps = ({ input }: Props) => {
                 <Fragment key={key}>
                     <div className={style('index')}>{key + 1}</div>
                     <div>{label}</div>
-                    <div className={style('content')}>{steps}</div>
+                    <div className={style('content')}>
+                        {steps.toLocaleString()}
+                    </div>
                 </Fragment>
             ))}
         </>

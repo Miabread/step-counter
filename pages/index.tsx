@@ -42,7 +42,7 @@ export default function Index({
             <div className="totalSteps">
                 <div className="total">
                     <h1>School Total</h1>
-                    <h2>{steps} Steps</h2>
+                    <h2>{steps.toLocaleString()} Steps</h2>
                 </div>
             </div>
             <nav>

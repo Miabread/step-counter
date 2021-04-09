@@ -19,7 +19,7 @@ export const Total = ({ input, label = 'Total' }: Props) => {
         <>
             <div className={style('index')}>+</div>
             <div>{label}</div>
-            <div className={style('content')}>{total}</div>
+            <div className={style('content')}>{total.toLocaleString()}</div>
         </>
     );
 };
