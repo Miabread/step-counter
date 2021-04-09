@@ -4,7 +4,7 @@ export function Footer() {
     return (
         <footer>
             <hr />
-            Programmers: James Clark, Wyatt Allaby, Tye Oulette &#8226; Logo
+            Programmers: James Clark, Wyatt Allaby, Eric Edwards &#8226; Logo
             Designer: Mylena Bovo &#8226;{' '}
             <a href="https://discord.gg/5pJJY2bTZ8">Discord</a> &#8226;{' '}
             <a href="https://github.com/jamesBeeProg/step-counter">Source</a>

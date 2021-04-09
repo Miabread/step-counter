@@ -7,7 +7,7 @@ import { usePrisma } from '../lib/prisma';
 
 //this is for when you want to change the week you are on
 const beginDay = 26; //pass in the day that you started
-const beginMonth = 4; //pass in the month that you are currently in
+const beginMonth = 3; //pass in the month that you are currently in
 const beginYear = 2021; //pass in the year you are on
 
 export const getStaticProps = async () => {
