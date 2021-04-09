@@ -10,6 +10,11 @@
 
     --content-label: ' Steps';
 
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     @media only screen and (max-width: 600px) {
         display: flex; // Change to a "burger" layout
         flex-flow: column;
