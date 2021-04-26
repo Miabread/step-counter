@@ -46,10 +46,12 @@ export default function Index({
                     <h2>Submit Form</h2>
                 </a>
             </nav>
-
             <header className="header">
-                <div className="total totalnumber">
-                    <h1>School Total {steps}</h1>
+                <div className="total">
+                    <div className="padding"></div>
+                    <div className="text">
+                        <h1>School Total {steps}</h1>
+                    </div>
                 </div>
             </header>
             <section>
@@ -121,12 +123,36 @@ export default function Index({
             </section>
             <footer></footer>
             <style jsx>{`
+                .padding {
+                    position: absolute;
+                    display: center;
+                    padding: 3em;
+                    background-color: white;
+                    opacity: 0.5;
+                    width: 17%;
+                }
+
+                .text {
+                    position: relative;
+                }
+
+                .total {
+                    position: relative;
+                }
+
+                @media only screen and (max-width: 1024px) {
+                    .padding {
+                        width: 72%;
+                    }
+                }
+
                 .links {
                     font-size: 40px;
                     text-align: center;
                 }
 
                 .linksdiv {
+                    /* first section layout with links */
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
@@ -139,6 +165,7 @@ export default function Index({
                 }
 
                 .creatorsdiv {
+                    /* second section layout with names */
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
@@ -146,6 +173,7 @@ export default function Index({
                 }
 
                 .top {
+                    /* creates the header at top of page */
                     border: none;
                     background-color: #edbd3e;
                     display: flex;
@@ -154,25 +182,70 @@ export default function Index({
                     font-size: 20px;
                     height: 30vh;
                 }
+                /* Here is where the different sizes for phones starts */
                 @media only screen and (max-width: 600px) {
                     .top {
+                        /* All of the positioning for the top of the page */
                         text-align: center;
                         display: flex;
                         justify-content: space-around;
                         flex-direction: column;
                         font-size: 10px;
-                        height: 40vh;
+                        height: 30vh;
                     }
                     .topimg {
-                        order: -1;
+                        order: -1; /* This moves the Logo to the top of the page on phones */
+                        width: 45%;
+                        height: auto;
+                    }
+                }
+                @media only screen and (width: 280px) {
+                    .top {
+                        height: 38vh; /* Galaxy Fold */
+                    }
+                }
+                @media only screen and (width: 320px) {
+                    .top {
+                        height: 40vh; /* iPhone 5/SE */
+                    }
+                }
+                @media only screen and (width: 360px) {
+                    .top {
+                        height: 37vh; /* Galaxy S5 and Moto G4 */
+                    }
+                }
+                @media only screen and (width: 375px) {
+                    .top {
+                        height: 35vh; /* iPhone X and iPhone 6/7/8 */
+                    }
+                }
+                @media only screen and (width: 411px) {
+                    .top {
+                        height: 35vh; /* Pixel 2 and Pixel 2 XL*/
+                    }
+                }
+                @media only screen and (width: 414px) {
+                    .top {
+                        height: 35vh; /* iPhone 6/7/8 Plus*/
+                    }
+                }
+                @media only screen and (width: 450px) {
+                    .top {
+                        height: 40vh; /* Surface Duo */
+                    }
+                }
+                @media only screen and (width: 1024px) {
+                    .top {
+                        height: 15vh; /* iPad Pro */
                     }
                 }
 
                 .topimg {
-                    margin-right: 8%;
+                    margin-right: 8%; /* Keeps the image centered for computer */
                 }
 
                 @media only screen and (max-width: 600px) {
+                    /* Keeps the logo centered for phones */
                     .topimg {
                         margin: auto;
                         margin-top: 5%;
@@ -189,13 +262,15 @@ export default function Index({
                 section,
                 main,
                 nav,
-                .header,
-                h1 {
+                .total,
+                .header {
+                    /* Gives each box its own shade */
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 }
 
                 .total {
+                    /* this is the total image that floats in the back */
                     background-image: url('https://i.ibb.co/7VPXZtH/hikeimg.jpg');
                     background-position: center !important;
                     background-repeat: no-repeat !important;
@@ -213,32 +288,29 @@ export default function Index({
                     }
                 }
 
-                h1 {
-                    padding: 0.5em;
-                    background-color: white;
-                    font-size: 40px;
-                }
-
                 @media only screen and (max-width: 600px) {
                     h1 {
-                        text-align: center;
+                        text-align: center; /* keeps in place for the phone */
                     }
                 }
 
+                /* all section/aside css is adressing the different boxing */
                 section {
                     width: 100%;
                     min-height: 50vh;
 
+                    padding-top: 2em;
                     background: #495e88;
                     color: black;
                 }
 
-                section {
-                    margin-top: 5vh;
+                section:nth-child(4) {
+                    margin-top: 5vh; /* splits up the two sections */
                 }
 
                 .sectiondiv,
                 aside {
+                    /* some layout for the sizing of section */
                     height: 60%;
                     width: 100%;
                     min-height: 50vh;
@@ -256,7 +328,7 @@ export default function Index({
                         min-height: 50vh;
 
                         display: flex;
-                        flex-direction: column;
+                        flex-direction: column; /* keeps sections vertical */
                         justify-content: center;
                         align-items: center;
                     }
@@ -268,16 +340,6 @@ export default function Index({
                     background-size: cover;
                 }
 
-                /*section:nth-child(3) aside {
-                    'https://i.ibb.co/Rysy2b2/discordlogo.jpg'
-                    'https://i.ibb.co/V9LYHXn/githublogo.png'
-                    'https://i.ibb.co/6JgpjHw/assabetlogo.jpg'
-                }*/
-
-                /* section:nth-child(4) aside {
-                    background-image: url('');
-                } */
-
                 p {
                     width: 80%;
                 }
@@ -288,28 +350,22 @@ export default function Index({
                     padding-bottom: 1em;
                     font-style: italic;
                 }
-                footer hr {
-                    display: block;
-                    text-align: center;
-                    background-color: #495e88;
-                    height: 0.2em;
-                    width: 75vw;
-                }
 
                 a {
-                    text-decoration: none;
+                    /* design for the links */
+                    text-decoration: underline;
                     padding: 1em;
                     margin: 1em;
 
                     transition: 0.5s;
-                    color: black;
+                    color: darkblue;
 
                     border: 2px solid #edbd3e;
                     border-radius: 33px;
                 }
 
                 a:hover {
-                    background-color: #cfd6df;
+                    background-color: #cfd6df; /* changes background color when hovering links */
                 }
             `}</style>
         </div>
