@@ -55,6 +55,53 @@ export default function Index({
                 </div>
             </header>
             <section>
+                <header className="creators">Fitness Challenge</header>
+                <article>
+                    <p>
+                        Welcome to the Fitness Challenge developed by Mr.
+                        Nicalek, with the help of CPWD and Design & Visual, as
+                        part of a PE/Wellness initiative to make sure our
+                        community keeps moving. The goal of the “competition” is
+                        to have all students from each shop and grade level as
+                        well as Faculty & Staff, compete in a Step Challenge.
+                    </p>
+                    <p>
+                        Individuals will track their steps through the use of a
+                        Fitness App, Fitbit and/or Smart Watch every day of the
+                        week starting on Friday, March 12th. At the end of the
+                        day, take a screenshot of your step counter or picture
+                        of your Fitbit and upload the information into the
+                        Google Form (shown below). You will input the number of
+                        steps each day and that data will be uploaded to a
+                        Tracker on the school’s website for individual students
+                        by grade and shop. Faculty & Staff participation can be
+                        seen by clicking on the “No Shop” tab.
+                    </p>
+                    <p>
+                        <strong>
+                            **50% of the Students in each Shop Week must
+                            participate in order to be eligible for the reward
+                            at the end of the year**
+                        </strong>
+                    </p>
+                    <p>
+                        The Challenge will be 11 Weeks for A Week (10th & 12th)
+                        and 12 Weeks for B Week (9th & 11th). There will be
+                        weekly individual awards and cumulative shop awards at
+                        the end of their respective time frame.
+                    </p>
+                    <ul>
+                        <strong>Shop Rewards:</strong>
+                        <li>A Week - May 28th</li>
+                        <li>B Week - June 4th</li>
+                    </ul>
+                    <p>
+                        Faculty and staff will also be able to participate for
+                        individual awards
+                    </p>
+                </article>
+            </section>
+            <section>
                 <header className="links">Links</header>
                 <div className="linksdiv">
                     <div className="sectiondiv">
@@ -76,8 +123,8 @@ export default function Index({
                         <h2>Source Code</h2>
                         <p>You can view our Source Code here with Git Hub.</p>
                         <img
-                            src="https://i.ibb.co/V9LYHXn/githublogo.png"
-                            width="80%"
+                            src="https://i.ibb.co/k0CXX2r/githublogocropped.png"
+                            width="45%"
                             height="auto"
                         />
                         <a href="https://github.com/jamesBeeProg/step-counter">
@@ -92,8 +139,8 @@ export default function Index({
                         </p>
 
                         <img
-                            src="https://i.ibb.co/Rysy2b2/discordlogo.jpg"
-                            width="80%"
+                            src="https://i.ibb.co/LJKGHRR/discordlogocropped.jpg"
+                            width="45%"
                             height="auto"
                         />
                         <a href="https://discord.gg/KnUP59Gg">Join</a>
@@ -104,26 +151,27 @@ export default function Index({
                 <header className="creators">Creators</header>
                 <div className="creatorsdiv">
                     <div className="sectiondiv">
-                        <h2>James Clark</h2>
+                        <h2>Wyatt Allaby</h2>
                         <p>Programmer</p>
                     </div>
                     <div className="sectiondiv">
-                        <h2>Wyatt Allaby</h2>
+                        <h2>Mylena Bovo</h2>
+                        <p>Logo Designer</p>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>James Clark</h2>
                         <p>Programmer</p>
                     </div>
                     <div className="sectiondiv">
                         <h2>Eric Edwards</h2>
                         <p>Data Analysis</p>
                     </div>
-                    <div className="sectiondiv">
-                        <h2>Mylena Bovo</h2>
-                        <p>Logo Designer</p>
-                    </div>
                 </div>
             </section>
             <footer></footer>
             <style jsx>{`
                 .padding {
+                    /* How I create a transparent padding while keeping the text(.text) completely opaque */
                     position: absolute;
                     display: center;
                     padding: 3em;
@@ -132,18 +180,16 @@ export default function Index({
                     width: 17%;
                 }
 
-                .text {
-                    position: relative;
-                }
-
-                .total {
-                    position: relative;
-                }
-
                 @media only screen and (max-width: 1024px) {
+                    /* changes the width for the phone versions */
                     .padding {
                         width: 72%;
                     }
+                }
+
+                .text {
+                    /* sets the position relative to the parent and one top of the padding */
+                    position: relative;
                 }
 
                 .links {
@@ -161,15 +207,12 @@ export default function Index({
 
                 .creators {
                     font-size: 40px;
-                    text-align: center;
                 }
 
                 .creatorsdiv {
                     /* second section layout with names */
                     display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
+                    text-align: center;
                 }
 
                 .top {
@@ -253,15 +296,21 @@ export default function Index({
                 }
 
                 .main {
+                    /* basic layout for whole page */
                     background-color: #cfd6df;
                     margin: auto;
                     display: flex;
                     flex-flow: column;
                 }
 
+                section img {
+                    border-radius: 12%; /* gives the links images rounded edges */
+                }
+
                 section,
                 main,
                 nav,
+                section img,
                 .total,
                 .header {
                     /* Gives each box its own shade */
@@ -281,6 +330,8 @@ export default function Index({
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    border-radius: none;
+                    position: relative; /* for the padding and text */
                 }
                 @media only screen and (max-width: 600px) {
                     .total {
@@ -294,26 +345,39 @@ export default function Index({
                     }
                 }
 
+                article {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: left;
+                }
+
+                article p {
+                    width: 55%;
+                }
+
                 /* all section/aside css is adressing the different boxing */
                 section {
                     width: 100%;
-                    min-height: 50vh;
+                    min-height: 30vh;
 
-                    padding-top: 2em;
+                    text-align: center;
+                    padding-top: 2em; /* gives a little space between the top of the section and images */
                     background: #495e88;
                     color: black;
                 }
 
-                section:nth-child(4) {
-                    margin-top: 5vh; /* splits up the two sections */
+                section:nth-child(4),
+                section:nth-child(5) {
+                    margin-top: 5vh; /* splits up the three sections */
                 }
 
                 .sectiondiv,
                 aside {
                     /* some layout for the sizing of section */
-                    height: 60%;
+                    height: auto;
                     width: 100%;
-                    min-height: 50vh;
+                    min-height: 20vh; /* creates gap between title and children below */
 
                     display: flex;
                     flex-direction: column;
@@ -323,10 +387,6 @@ export default function Index({
                 @media only screen and (max-width: 600px) {
                     section div,
                     aside {
-                        height: 60%;
-                        width: 100%;
-                        min-height: 50vh;
-
                         display: flex;
                         flex-direction: column; /* keeps sections vertical */
                         justify-content: center;
@@ -342,13 +402,12 @@ export default function Index({
 
                 p {
                     width: 80%;
+                    font-size: 20px;
                 }
 
                 footer {
-                    text-align: center;
-                    padding-top: 1em;
-                    padding-bottom: 1em;
-                    font-style: italic;
+                    padding-top: 0.2em;
+                    padding-bottom: 0.2em;
                 }
 
                 a {
