@@ -31,7 +31,7 @@ export default function Index({
             </Head>
             <nav className="top">
                 <a href="/all/shops">
-                    <h2>View # of Steps by Shop</h2>
+                    <h2>Data Breakdown</h2>
                 </a>
                 <div className="topimg">
                     <img
@@ -42,7 +42,7 @@ export default function Index({
                     />
                 </div>
                 <a href="https://forms.gle/YWFLzeHt1Qne4HEV6">
-                    <h2>Submit Form</h2>
+                    <h2>Submit Steps</h2>
                 </a>
             </nav>
             <header className="header">
@@ -78,9 +78,9 @@ export default function Index({
                     </p>
                     <p>
                         <strong>
-                            **50% of the Students in each Shop Week must
+                            50% of the Students in each Shop Week must
                             participate in order to be eligible for the reward
-                            at the end of the year**
+                            at the end of the year
                         </strong>
                     </p>
                     <p>
@@ -105,10 +105,7 @@ export default function Index({
                 <div className="linksdiv">
                     <div className="sectiondiv">
                         <h2>Assabet Valley</h2>
-                        <p>
-                            Here is our school&apos;s website. You can see
-                            various events here.
-                        </p>
+                        <p>Visit our page on the school website</p>
 
                         <img
                             src="https://i.ibb.co/6JgpjHw/assabetlogo.jpg"
@@ -117,12 +114,12 @@ export default function Index({
                         />
 
                         <a href="http://assabet.org/cms/one.aspx?portalId=82187&pageId=36650809">
-                            Visit
+                            Visit Page
                         </a>
                     </div>
                     <div className="sectiondiv">
                         <h2>Source Code</h2>
-                        <p>You can view our Source Code here with Git Hub.</p>
+                        <p>View our source code or report issues</p>
                         <img
                             src="https://i.ibb.co/k0CXX2r/githublogocropped.png"
                             width="45%"
@@ -133,18 +130,15 @@ export default function Index({
                         </a>
                     </div>
                     <div className="sectiondiv">
-                        <h2>Discord!</h2>
-                        <p>
-                            Join our discord to talk about the step challenge
-                            and ask questions.
-                        </p>
+                        <h2>Discord</h2>
+                        <p>Join our server to talk or ask questions</p>
 
                         <img
                             src="https://i.ibb.co/LJKGHRR/discordlogocropped.jpg"
                             width="45%"
                             height="auto"
                         />
-                        <a href="https://discord.gg/KnUP59Gg">Join</a>
+                        <a href="https://discord.gg/5pJJY2bTZ8">Join Server</a>
                     </div>
                 </div>
             </section>
@@ -152,20 +146,20 @@ export default function Index({
                 <header className="creators">Creators</header>
                 <div className="creatorsdiv">
                     <div className="sectiondiv">
+                        <h2>James Clark</h2>
+                        <p>Infrastructure, Web Design</p>
+                    </div>
+                    <div className="sectiondiv">
                         <h2>Wyatt Allaby</h2>
-                        <p>Programmer</p>
+                        <p>Web Design, Data Manager</p>
+                    </div>
+                    <div className="sectiondiv">
+                        <h2>Eric Edwards</h2>
+                        <p>Data Manager</p>
                     </div>
                     <div className="sectiondiv">
                         <h2>Mylena Bovo</h2>
                         <p>Logo Designer</p>
-                    </div>
-                    <div className="sectiondiv">
-                        <h2>James Clark</h2>
-                        <p>Programmer</p>
-                    </div>
-                    <div className="sectiondiv">
-                        <h2>Eric Edwards</h2>
-                        <p>Data Analysis</p>
                     </div>
                 </div>
             </section>
