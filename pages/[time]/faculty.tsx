@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { maxEntriesDisplayed, minute, times } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
