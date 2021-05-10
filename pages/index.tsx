@@ -49,7 +49,7 @@ export default function Index({
                 <div className="total">
                     <div className="padding"></div>
                     <div className="text">
-                        <h1>School Total {steps}</h1>
+                        <h1>School Total: {steps.toLocaleString()}</h1>
                     </div>
                 </div>
             </header>
@@ -169,7 +169,7 @@ export default function Index({
                     /* How I create a transparent padding while keeping the text(.text) completely opaque */
                     position: absolute;
                     display: center;
-                    padding: 3em;
+                    padding: 4em;
                     background-color: white;
                     opacity: 0.5;
                     width: 17%;
