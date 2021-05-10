@@ -53,8 +53,9 @@
 .sidebar {
     grid-area: side;
     background-color: #495e88;
+    color: rgba($color: #ffffff, $alpha: 0.8);
 
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 10px black;
     z-index: 1;
 
     display: flex;
@@ -82,7 +83,7 @@
     }
 
     h3 {
-        border-bottom: black solid thin; // Underline
+        border-bottom: rgba($color: #ffffff, $alpha: 0.8) solid thin; // Underline
     }
 }
 
