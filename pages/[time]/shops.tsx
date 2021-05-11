@@ -67,8 +67,8 @@ export default function Shops({
         )
         // Assuming order is the same as `shops`, pair the count with their shop's name
         .map((it, i) => [shops[i], it] as const)
-        // Ignore any shops with 0 steps
-        .filter((it) => it[1] > 0);
+        // Ignore the null shop
+        .filter((_, i) => i !== 0);
 
     // Sort shops by decreasing steps
     steps.sort((a, b) => b[1] - a[1]);
