@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { minute, shops, times, years } from '../../lib/data';
+import { secInMinute, shops, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
 import css from './index.module.scss';
@@ -55,7 +55,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
     return {
         props: { data, time, faculty },
-        revalidate: minute,
+        revalidate: secInMinute,
     };
 };
 

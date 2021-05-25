@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { maxEntriesDisplayed, minute, times, years } from '../../lib/data';
+import { maxEntriesDisplayed, secInMinute, times, years } from '../../lib/data';
 import { usePrisma } from '../../lib/prisma';
 import { createStyle, getStaticPathsForView } from '../../lib/misc';
 import css from './index.module.scss';
@@ -38,7 +38,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
     return {
         props: { data, time },
-        revalidate: minute,
+        revalidate: secInMinute,
     };
 };
 

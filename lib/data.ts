@@ -41,8 +41,11 @@ export const times = {
     previous: 'Last Week',
 };
 
-export const second = 1000;
-export const minute = second * 60;
-export const hour = minute * 60;
-export const day = hour * 24;
-export const week = day * 7;
+export const msInSecond = 1000;
+export const msInMinute = msInSecond * 60;
+export const msInHour = msInMinute * 60;
+export const msInDay = msInHour * 24;
+export const msInWeek = msInDay * 7;
+
+export const secInSecond = 1;
+export const secInMinute = secInSecond * 60;
