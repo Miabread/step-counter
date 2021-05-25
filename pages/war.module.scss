@@ -1,0 +1,50 @@
+.grid-container {
+    display: grid;
+    grid-template:
+        'top  top' minmax(0, 0.3fr)
+        'left right' 1fr /
+        1fr 1fr;
+
+    height: 100vh;
+    width: 100vw;
+
+    --content-label: ' Steps';
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+        display: flex; // Change to a "burger" layout
+        flex-flow: column;
+        height: auto; // Grow to fit content
+    }
+}
+
+.left {
+    grid-area: left;
+    background: linear-gradient(to right, #47abd8, #95d2ec);
+}
+
+.right {
+    grid-area: right;
+    background: linear-gradient(to left, #d01b1b, #ff4242);
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 0.1em black;
+    box-shadow: inset 0 0 1em black;
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
