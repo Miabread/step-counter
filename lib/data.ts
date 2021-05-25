@@ -13,7 +13,7 @@ export const shops = [
     'Drafting',
     'Electrical',
     'HVAC',
-    'Health Tech',
+    'Health Tech(Clowns)',
     'Metal Fabrication',
     'Painting and Design',
     'Plumbing',
