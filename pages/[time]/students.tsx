@@ -11,6 +11,7 @@ import { Steps } from '../../components/Steps';
 import { DataHeader } from '../../components/DataHeader';
 import Head from 'next/head';
 import { yearFilterContext } from '../../components/YearFilter';
+import { War } from '../../components/War';
 
 const style = createStyle(css);
 
@@ -78,6 +79,7 @@ export default function Shops({
             <SideBar currentView="students" currentTime={time} />
             <div className={style('main')}>
                 <div className={style('table')}>
+                    <War />
                     <Total input={filtered.map((it) => it.sum.steps)} />
                     <Steps input={steps} />
                 </div>
