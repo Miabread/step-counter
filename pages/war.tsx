@@ -43,6 +43,21 @@ export default function War({
     cpwd,
     health,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+    const [cpwdDiff, healthDiff] =
+        cpwd.sum.steps > health.sum.steps
+            ? [
+                  (cpwd.sum.steps - health.sum.steps).toLocaleString() +
+                      ' Ahead',
+                  (cpwd.sum.steps - health.sum.steps).toLocaleString() +
+                      ' Behind',
+              ]
+            : [
+                  (health.sum.steps - cpwd.sum.steps).toLocaleString() +
+                      ' Behind',
+                  (health.sum.steps - cpwd.sum.steps).toLocaleString() +
+                      ' Ahead',
+              ];
+
     return (
         <div className={style('grid-container')}>
             <Head>
@@ -52,10 +67,12 @@ export default function War({
             <div className={style('left', 'center')}>
                 <h1>CPWD</h1>
                 <h2>{cpwd.sum.steps.toLocaleString()}</h2>
+                <h3>{cpwdDiff}</h3>
             </div>
             <div className={style('right', 'center')}>
                 <h1>Health Tech</h1>
                 <h2>{health.sum.steps.toLocaleString()}</h2>
+                <h3>{healthDiff}</h3>
             </div>
         </div>
     );
