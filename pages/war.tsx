@@ -9,12 +9,14 @@ import css from './war.module.scss';
 
 const style = createStyle(css);
 
+const years = [2021, 2023];
+
 export const getStaticProps = async () => {
     const [cpwd, health] = await usePrisma(async (prisma) =>
         Promise.all([
             prisma.entry.aggregate({
                 where: {
-                    year: { not: 0 },
+                    year: { in: years },
                     shop: 6,
                     verified: true,
                     ...filterByTime('all'),
@@ -23,7 +25,7 @@ export const getStaticProps = async () => {
             }),
             prisma.entry.aggregate({
                 where: {
-                    year: { not: 0 },
+                    year: { in: years },
                     shop: 14,
                     verified: true,
                     ...filterByTime('all'),
