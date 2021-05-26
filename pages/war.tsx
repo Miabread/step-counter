@@ -68,11 +68,13 @@ export default function War({
             <DataHeader />
             <div className={style('left', 'center')}>
                 <h1>CPWD</h1>
+                <h4>{years.join(' & ')}</h4>
                 <h2>{cpwd.sum.steps.toLocaleString()}</h2>
                 <h3>{cpwdDiff}</h3>
             </div>
             <div className={style('right', 'center')}>
                 <h1>Health Tech</h1>
+                <h4>{years.join(' & ')}</h4>
                 <h2>{health.sum.steps.toLocaleString()}</h2>
                 <h3>{healthDiff}</h3>
             </div>
